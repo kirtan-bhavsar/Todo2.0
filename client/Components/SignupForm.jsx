@@ -8,6 +8,8 @@ import {
 } from "../Utils/Notifications.js";
 
 const SignupForm = () => {
+
+  const apiUrl = import.meta.env.VITE_API_URL;
   const navigate = useNavigate();
 
   const [passwordMatches, setPasswordMatches] = useState(false);
@@ -52,7 +54,8 @@ const SignupForm = () => {
         errorNotification("Passwords do not match");
       } else {
 
-      const response = await axios.post("/api/v1/user/register", formData);
+      // const response = await axios.post("/api/v1/user/register", formData);
+      const response = await axios.post(`${apiUrl}/api/v1/user/register`, formData);
       if (response.status === 200) {
         navigate("/home");
         successNotification("Registration Successful");

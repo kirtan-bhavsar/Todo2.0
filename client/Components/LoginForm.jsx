@@ -25,7 +25,8 @@ const LoginForm = () => {
       e.preventDefault();
 
       try {
-        await axios.post("/api/v1/user/login", data);
+        // await axios.post("/api/v1/user/login", data);
+        await axios.post(`${apiUrl}/api/v1/user/login`, data);
         successNotification("Login Successful");
         navigate('/home');
       } catch (error) {

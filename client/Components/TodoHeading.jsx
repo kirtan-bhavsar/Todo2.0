@@ -8,13 +8,16 @@ import { useState } from "react";
 
 const TodoHeading = ({user}) => {
 
+    const apiUrl = import.meta.env.VITE_API_URL;
+
     const navigate = useNavigate();
 
     const logout = async() => {
 
         try {
          
-        const response = await axios.post('/api/v1/user/logout');
+        // const response = await axios.post('/api/v1/user/logout');
+        const response = await axios.post(`${apiUrl}/api/v1/user/logout`);
 
         navigate('/login');
 

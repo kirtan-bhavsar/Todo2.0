@@ -5,6 +5,8 @@ import axios from "axios";
 
 const Login = () => {
 
+  const apiUrl = import.meta.env.VITE_API_URL;
+
   const navigate = useNavigate();
 
   const[isAuthenticated,setIsAuthenticated] = useState(false);
@@ -17,7 +19,8 @@ const Login = () => {
 
       try {
         
-      const response =   await axios.get("/api/v1/user/auth");
+      // const response =   await axios.get("/api/v1/user/auth");
+      const response =   await axios.get(`${apiUrl}/api/v1/user/auth`);
 
       if(response.status === 200){
         console.log(response);
