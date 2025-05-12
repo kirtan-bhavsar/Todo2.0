@@ -1,0 +1,509 @@
+/* Colour Palette */
+/* --bg-primary: #121212;
+--bg-secondary: #1E1E1E;
+--text-primary: #E0E0E0;
+--text-secondary: #A0A0A0;
+--accent-color: #BB86FC;
+--accent-hover: #9E65F5;
+--danger: #CF6679;
+--border-color: #2D2D2D;
+--completed-text: #616161; */
+/* Colour Palette end */
+
+/* Root level styling */
+body {
+  box-sizing: border-box;
+}
+
+.text-custom-color {
+  color: rgb(31, 103, 161);
+}
+
+.bg-custom-primary-color {
+  background-color: #121212;
+}
+
+.text-custom-heading-color {
+  color: #bb86fc;
+}
+
+.bg-custom-secondary-color {
+  background-color: #1e1e1e;
+}
+
+.text-custom-primary-color {
+  color: #e0e0e0;
+}
+
+.text-custom-secondary-color {
+  color: #a0a0a0;
+}
+
+.btn-custom-color {
+  color: #bb86fc;
+}
+
+.btn-custom-hover-color {
+  color: #9e65f5;
+}
+/* Root level Styling ends */
+
+/* Container Styling */
+.Container {
+  min-height: 100vh;
+}
+/* Container Styling ends */
+
+/* Header Styling (TodoHeading.jsx)*/
+.HeaderContainer {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.HeaderHeading {
+  width: 100%;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.HeaderLogoutButton {
+  color: #a0a0a0;
+  cursor: pointer;
+  margin-right: 10px;
+  text-align: center;
+  transform: scale(1);
+}
+/* Header Styling ends */
+
+/* General Styling ? */
+input:focus {
+  border: 2px solid #9e65f5;
+  outline: none;
+}
+/* General Styling ends */
+
+/* Add & Toggle Styling (AddTodo.jsx) */
+.add-todo {
+  width: 50%;
+  gap: 0.5rem;
+}
+
+.addtask-input {
+  display: inline;
+  flex: 1;
+  border: 1px solid #a0a0a0;
+  color: #e0e0e0;
+}
+
+.addtask-input::placeholder {
+  color: #a0a0a0;
+}
+
+.add-todo button:hover {
+  background-color: #9e65f5;
+}
+
+.add-todo button:active {
+  background-color: #a874ff;
+}
+
+.add-todo button {
+  background-color: #bb86fc;
+  border-radius: 8px;
+  padding: 0.5rem;
+  outline: none;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+/* Todo Display Toggle Button Styling */
+
+.todoDisplayToggleContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: end;
+  margin-top: 10px;
+  width: 50%;
+}
+
+#todoDisplayToggle {
+  display: none;
+}
+
+.todoDisplayToggleButton {
+  width: 40px;
+  height: 20px;
+  background-color: #2d2d2d;
+  border: 1px solid #bb86fc;
+  position: relative;
+  border-radius: 200px;
+  transition: all 0.3s;
+}
+
+.todoDisplayToggleButton::before {
+  position: absolute;
+  content: "";
+  width: 15px;
+  height: 15px;
+  margin: 2px;
+  background-color: #bb86fc;
+  border-radius: 200px;
+  transition: all 0.3s;
+}
+
+#todoDisplayToggle:checked + .todoDisplayToggleButton {
+  background-color: #bb86fc;
+  border: 1px solid #a0a0a0;
+}
+
+#todoDisplayToggle:checked + .todoDisplayToggleButton::before {
+  background-color: #2d2d2d;
+  transform: translateX(20px);
+}
+
+.todoDisplayToggleInstruction {
+  color: #a0a0a0;
+  font-size: 12px;
+}
+/* Todo Display Toggle Button Styling ends */
+/* Add & Toggle Styling ends (AddTodo.jsx) */
+
+/* Todo Listing Styling (ListTodos.jsx)  */
+
+.list-todos {
+  width: 50%;
+}
+
+.list-todos li {
+  list-style: none;
+}
+
+.todo-task {
+  align-items: center;
+  border-radius: 8px;
+}
+
+/* Provides a pointer effect when hovered over edit or delete button */
+.todo-task .editTask,
+.todo-task .deleteTask {
+  cursor: pointer;
+}
+
+/* Check animation when the todo is marked isDone : true */
+.isTodoCompletedLabel {
+  border: 1px solid white;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  transition: 0.3s;
+  overflow: hidden;
+  margin: 5px;
+}
+
+.line {
+  display: inline-block;
+  background-color: #ffffff;
+  transition: 0.3s;
+}
+
+.line1 {
+  width: 3px;
+  height: 6px;
+  transform: rotate(-45deg) translate(8px, -15px);
+}
+
+.isTodoCompleted:checked + .isTodoCompletedLabel .line1 {
+  width: 2px;
+  height: 6px;
+  transform: rotate(-45deg) translate(6px, -3px);
+}
+
+.line2 {
+  width: 10px;
+  height: 2px;
+  transform: rotate(-45deg) translate(20px, -7px);
+}
+.isTodoCompleted:checked + .isTodoCompletedLabel .line2 {
+  width: 10px;
+  height: 2px;
+  transform: rotate(-45deg) translate(8px, -6px);
+}
+
+.isTodoCompleted:checked + .isTodoCompletedLabel {
+  background-color: #a874ff;
+  border-color: #a874ff;
+}
+/* Check animation when the todo is marked isDone : true  ends*/
+
+/* will change the edit task fa button when hovered */
+.todo-task .editTask:hover {
+  color: #7f7f7f;
+}
+
+/* will change the delete task fa button when hovered */
+.todo-task .deleteTask:hover {
+  color: #7f7f7f;
+}
+
+/* when click on the check button this short animation is being applied  */
+.isTodoCompleted:checked ~ .titleDisplaySpan {
+  text-decoration: line-through;
+}
+
+.titleDisplaySpan {
+  padding-bottom: 5px;
+  transition: all 1.5s;
+}
+
+.titleDisplayInput {
+  padding-bottom: 5px;
+  margin-right: 10px;
+  border-radius: 5px;
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+  border: 1px solid #a0a0a0;
+}
+/* Todo Listing styling ends (ListTodos.jsx)  */
+
+/* Login Styling (LoginForm.jsx) */
+
+.LoginContainer {
+  background-color: #121212;
+}
+
+.LoginForm {
+  background-color: #1e1e1e;
+  height: 500px;
+  width: 500px;
+  margin-top: 55px;
+  border-radius: 12px;
+  padding: 2.5rem;
+}
+
+.LoginForm form {
+  width: 100%;
+}
+
+.LoginFormHeading {
+  color: #bb86fc;
+  text-align: center;
+}
+
+.LoginFormParagraph {
+  color: #a0a0a0;
+  font-size: 17px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.InputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.InputGroup label {
+  font-size: 14px;
+}
+
+.LoginForm form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.LoginForm .InputGroup input {
+  background-color: #121212 !important;
+  padding: 10px 16px;
+  border-radius: 8px;
+  color: #e0e0e0 !important;
+  border: 1px solid #2d2d2d;
+}
+
+.LoginForm .InputGroup input:focus {
+  background-color: #121212 !important;
+  padding: 10px 16px;
+  border-radius: 8px;
+  color: #e0e0e0;
+  border: 1px solid #bb86fc !important;
+}
+
+.LoginForm .InputGroup input:active {
+  background-color: #121212 !important;
+  padding: 10px 16px;
+  border-radius: 8px;
+  color: #e0e0e0;
+  border: 1px solid #bb86fc !important;
+}
+
+/* Deepseek recommendation for autofill  -  Don't know but it magically works*/
+.LoginForm .InputGroup input:-webkit-autofill,
+.LoginForm .InputGroup input:-webkit-autofill:hover,
+.LoginForm .InputGroup input:-webkit-autofill:focus,
+.LoginForm .InputGroup input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px #121212 inset !important;
+  -webkit-text-fill-color: #e0e0e0 !important;
+  caret-color: #e0e0e0;
+  border: 1px solid #bb86fc !important;
+}
+
+.LoginForm button {
+  margin-top: 10px;
+  background-color: #bb86fc;
+  border-radius: 8px;
+  padding: 10px 16px;
+  transition: 0.3s;
+}
+
+.LoginForm button:hover {
+  background-color: #9e65f5;
+}
+
+.InputGroup label {
+  color: #e0e0e0;
+}
+
+.divider {
+  color: #a0a0a0;
+  display: flex;
+  align-items: center;
+  margin: 1.5rem 0;
+  font-size: 0.8rem;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  border-bottom: 1px solid #a0a0a0;
+  flex: 1;
+}
+
+.divider::before {
+  margin-right: 10px;
+}
+
+.divider::after {
+  margin-left: 10px;
+}
+
+.footer {
+  text-align: center;
+  color: #a0a0a0;
+}
+
+.SignupLink {
+  text-decoration: none;
+  color: #bb86fc;
+}
+
+.SignupLink:hover {
+  color: #9e65f5;
+}
+/* Login Styling ends (LoginForm.jsx) */
+
+/* Signup Styling (SignupForm.jsx) */
+
+.SignupContainer {
+  background-color: #121212;
+}
+
+.SignupForm {
+  height: 580px;
+  width: 500px;
+  background-color: #1e1e1e;
+  margin-top: 55px;
+  border-radius: 12px;
+  padding: 2.5rem;
+}
+
+.SignupFormHeading {
+  color: #bb86fc;
+  text-align: center;
+}
+
+.SignupFormParagraph {
+  color: #a0a0a0;
+  text-align: center;
+  font-size: 17px;
+  margin-bottom: 16px;
+}
+
+.SignupForm form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.SignupForm label {
+  color: #e0e0e0;
+}
+
+.SignupForm form input {
+  background-color: #121212;
+  padding: 10px 16px;
+  border-radius: 8px;
+  color: #e0e0e0;
+  border: 1px solid #2d2d2d;
+}
+
+.SignupForm form button {
+  margin-top: 10px;
+  background-color: #bb86fc;
+  border-radius: 8px;
+  padding: 10px 16px;
+  transition: 0.3s;
+}
+
+.SignupForm form button:hover {
+  color: #9e65f5;
+}
+
+.SignupForm .footer {
+  margin-top: 15px;
+}
+
+.SignupForm .footer span .LoginLink {
+  text-decoration: none;
+  color: #bb86fc;
+  transition: 0.3s;
+}
+
+.SignupForm .footer span .LoginLink:hover {
+  color: #9e65f5;
+}
+
+.SignupForm .InputGroup input:active,
+.SignupForm .InputGroup input:focus {
+  border: #9e65f5 1px solid;
+}
+
+input::-webkit-contacts-auto-fill-button,
+input::-webkit-credentials-auto-fill-button {
+  visibility: hidden;
+  display: none !important;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+}
+
+.SignupForm .InputGroup input:-webkit-autofill,
+.SignupForm .InputGroup input:-webkit-autofill:hover,
+.SignupForm .InputGroup input:-webkit-autofill:focus,
+.SignupForm .InputGroup input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px #121212 inset !important;
+  -webkit-text-fill-color: #e0e0e0 !important;
+  caret-color: #e0e0e0;
+  border: 1px solid #bb86fc !important;
+}
+
+.SignupForm .InputGroup .failureIndication:focus {
+  border: 1px solid #ff4500;
+}
+
+.SignupForm .InputGroup .successIndication:focus {
+  border: 1px solid #00ff7f;
+}
+
+/* Signup Styling ends (SignupForm.jsx) */
