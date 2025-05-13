@@ -110,6 +110,8 @@ const logoutUser = async (req, res) => {
     .cookie("jwtToken", "none", {
       httpOnly: true,
       expires: new Date(Date.now() + 1 * 1000),
+      secure: true,
+      sameSite: "None",
     })
     .json({ message: "Logout Successful" });
   // res.status(200).json({ message: "Logout Successful from new controller" });
