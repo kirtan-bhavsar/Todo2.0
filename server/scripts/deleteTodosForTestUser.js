@@ -8,7 +8,7 @@ const deleteTodosForTestUser = async () => {
 
   console.log("DB connected successfully");
 
-  const user = await User.findOne({ email: "test1@gmail.com" });
+  const user = await User.findOne({ email: "test@gmail.com" });
 
   // console.log(user);
 

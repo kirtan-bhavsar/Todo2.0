@@ -407,6 +407,8 @@ input:focus {
 
 .SignupContainer {
   background-color: #121212;
+  /* background-color: red; */
+  min-height: 100vh;
 }
 
 .SignupForm {
