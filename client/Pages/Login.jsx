@@ -20,7 +20,7 @@ const Login = () => {
       try {
         
       // const response =   await axios.get("/api/v1/user/auth");
-      const response =   await axios.get(`${apiUrl}/api/v1/user/auth`);
+      const response =   await axios.get(`${apiUrl}/api/v1/user/auth`,{withCredentials:true});
 
       if(response.status === 200){
         console.log(response);

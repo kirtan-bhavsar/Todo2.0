@@ -13,8 +13,10 @@ app.use(express.json());
 
 app.use(
   cors({
-    origin: "http://localhost:3500",
+    origin: "http://localhost:5173",
     credentials: true,
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE", // Specify allowed methods
+    allowedHeaders: "Content-Type,Authorization,X-Auth-Token", // Specify allowed headers
   })
 );
 

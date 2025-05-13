@@ -9,6 +9,8 @@ import { successNotification,errorNotification } from '../Utils/Notifications.js
 
 const LoginForm = () => {
 
+  const apiUrl = import.meta.env.VITE_API_URL;
+
   const [data,setData] = useState({
     email:"",
     password:""
@@ -26,7 +28,7 @@ const LoginForm = () => {
 
       try {
         // await axios.post("/api/v1/user/login", data);
-        await axios.post(`${apiUrl}/api/v1/user/login`, data);
+        await axios.post(`${apiUrl}/api/v1/user/login`, data,{withCredentials:true});
         successNotification("Login Successful");
         navigate('/home');
       } catch (error) {

@@ -44,10 +44,10 @@ const Home = () => {
       let apiData;
       if(displayCompleteTodos){
         //  apiData = await axios.get("/api/v1/todos?isDone=true");
-         apiData = await axios.get(`${apiUrl}/api/v1/todos?isDone=true`);
+         apiData = await axios.get(`${apiUrl}/api/v1/todos?isDone=true`,{withCredentials:true});
       }else{
         //  apiData = await axios.get("/api/v1/todos?isDone=false")
-         apiData = await axios.get(`${apiUrl}/api/v1/todos?isDone=false`);
+         apiData = await axios.get(`${apiUrl}/api/v1/todos?isDone=false`,{withCredentials:true});
       }
       // apiData = await axios.get('/api/v1/todos');
       console.log(apiData.data);
@@ -77,7 +77,7 @@ const Home = () => {
 
     try {
       // await axios.post("/api/v1/add", data);
-      await axios.post(`${apiUrl}/api/v1/add`, data);
+      await axios.post(`${apiUrl}/api/v1/add`, data,{withCredentials:true});
       data.title = "";
       addInputRef.current.focus();
       fetchData();
@@ -90,7 +90,7 @@ const Home = () => {
 
     try {
       // await axios.delete(`/api/v1/delete/${id}`);
-      await axios.delete(`${apiUrl}/api/v1/delete/${id}`);
+      await axios.delete(`${apiUrl}/api/v1/delete/${id}`,{withCredentials:true});
       fetchData();
       successNotification("Task deleted Successfully");
     } catch (error) {
@@ -115,7 +115,7 @@ const Home = () => {
 
     try {
       // await axios.put(`/api/v1/edit/${id}`, body);
-      await axios.put(`${apiUrl}/api/v1/edit/${id}`, body);
+      await axios.put(`${apiUrl}/api/v1/edit/${id}`, body,{withCredentials:true});
 
       if(!isDone){
       successNotification("Task completed successfully");
@@ -224,7 +224,7 @@ const getUser = async() => {
 
     try {
       //  const res = await axios.get('/api/v1/user/auth');
-       const res = await axios.get(`${apiUrl}/api/v1/user/auth`);
+       const res = await axios.get(`${apiUrl}/api/v1/user/auth`,{withCredentials:true});
        setUser({name:res.data.data.name});
     } catch (error) {
         
@@ -239,7 +239,7 @@ const getUser = async() => {
 
     try {
       // await axios.put(`/api/v1/edit/${id}`, body);
-      await axios.put(`${apiUrl}/api/v1/edit/${id}`, body);
+      await axios.put(`${apiUrl}/api/v1/edit/${id}`, body,{withCredentials:true});
       fetchData();
       // setEditing(null);
       setEditData({

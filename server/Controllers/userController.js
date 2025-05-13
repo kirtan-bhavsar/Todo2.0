@@ -112,7 +112,26 @@ const logoutUser = async (req, res) => {
       expires: new Date(Date.now() + 1 * 1000),
     })
     .json({ message: "Logout Successful" });
+  // res.status(200).json({ message: "Logout Successful from new controller" });
 };
+
+const testUser = async (req, res) => {
+  res.status(200).json({ message: "test user successful" });
+};
+
+// const logoutUser = async (req, res) => {
+//   res
+//     .status(200)
+//     .clearCookie("jwtToken", {
+//       // Use clearCookie
+//       httpOnly: true,
+//       // secure: process.env.NODE_ENV === 'production', // Consider secure in production
+//       sameSite: "strict", // recommended
+//       path: "/",
+//     })
+//     .json({ message: "Logout Successful" });
+//   return; // Ensure the function exits after sending the response
+// };
 
 // @api /api/v1/user/auth
 // @desc api to fetch the current logged in user
@@ -140,4 +159,4 @@ const authorizeUser = async (req, res) => {
   }
 };
 
-export { registerUser, loginUser, logoutUser, authorizeUser };
+export { registerUser, loginUser, logoutUser, authorizeUser, testUser };
