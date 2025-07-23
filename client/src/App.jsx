@@ -13,6 +13,7 @@ import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
+// demo comment to check if the commit is made to Todo2.0
 
 const App = () => {
   
@@ -20,7 +21,6 @@ const App = () => {
     <>
     <Router>
     <Routes>
-      
       <Route path="/" element={<Login/>}></Route>
       <Route path="/login" element={<Login/>}></Route>
       <Route path="/signup" element={<Signup/>}></Route>
