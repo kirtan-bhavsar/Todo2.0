@@ -16,6 +16,8 @@ import 'react-toastify/dist/ReactToastify.css';
 // demo comment to check if the commit is made to Todo2.0
 // first commit of V3
 
+document.body.classList.add('light');
+
 const App = () => {
   
   return (
