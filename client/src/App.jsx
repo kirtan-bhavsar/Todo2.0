@@ -16,11 +16,21 @@ import 'react-toastify/dist/ReactToastify.css';
 // demo comment to check if the commit is made to Todo2.0
 // first commit of V3
 
+export const checkDefaultTheme = () =>{
+  const isLightTheme = localStorage.getItem("light-theme") === 'true';
+  document.body.classList.toggle('light',isLightTheme);
+  return isLightTheme;
+}
+
+checkDefaultTheme();
+
+// document.body.classList.add('light');
+
 const App = () => {
   
   return (
     <>
-    <Router>
+    <Router>f
     <Routes>
       <Route path="/" element={<Login/>}></Route>
       <Route path="/login" element={<Login/>}></Route>

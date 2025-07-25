@@ -5,6 +5,7 @@ import AddTodo from "../Components/AddTodo.jsx";
 import ListTodos from "../Components/ListTodos.jsx";
 import { successNotification,errorNotification } from "../Utils/Notifications.js";
 import CheckSound1 from "../Assets/CheckSound1.mp3";
+import {checkDefaultTheme} from '../src/App.jsx';
 
 const Home = () => {
 
@@ -32,6 +33,8 @@ const Home = () => {
   });
 
   const [todos, setTodos] = useState([]);
+
+  const [isLightTheme,setLightTheme] = useState(checkDefaultTheme());
 
   // const [forceRender,setForceRerender] = useState(false);
 
@@ -64,6 +67,14 @@ const Home = () => {
      }
     }
   };
+
+  // toggle theme functionality
+  const toggleTheme = () => {
+    const currentTheme = !isLightTheme;
+    setLightTheme(currentTheme);
+    document.body.classList.toggle('light',currentTheme);
+    localStorage.setItem('light-theme',currentTheme);
+  }
 
   const displayCompletedTodos = (e) => {
     const checkState = e.target.checked;
@@ -261,7 +272,7 @@ const getUser = async() => {
   return (
     <>
     <div className="container-fluid Container position-relative bg-custom-primary-color align-items-center d-flex flex-column">
-        <TodoHeading user={user} />
+        <TodoHeading user={user} isLightTheme={isLightTheme} toggleTheme={toggleTheme}/>
         <AddTodo addTask={addTask} addInputRef={addInputRef} setData={setData} data={data} displayCompletedTodos={displayCompletedTodos} />
         <ListTodos todos={todos} editTask={editTask} isEditing={isEditing} editData={editData} setEditData={setEditData} editTodoTitle={editTodoTitle} setEditing={setEditing} deleteTask={deleteTask} />
       </div>

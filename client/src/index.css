@@ -3,12 +3,93 @@
 --bg-secondary: #1E1E1E;
 --text-primary: #E0E0E0;
 --text-secondary: #A0A0A0;
---accent-color: #BB86FC;
---accent-hover: #9E65F5;
---danger: #CF6679;
+--accent-color: #bb86fc;
+--accent-hover: VAR(--APP-var(--app-secondary-color);--danger: #CF6679;
 --border-color: #2D2D2D;
 --completed-text: #616161; */
 /* Colour Palette end */
+
+/* Color and Themes */
+:root {
+  /* Background colors for themes */
+
+  /* For dark theme */
+  --bg-dark-primary-color: #121212;
+  --bg-dark-secondary-color: #1e1e1e;
+  --bg-dark-tertiary-color: #2d2d2d;
+
+  /* For light theme */
+  --bg-light-primary-color: #fff;
+  --bg-light-secondary-color: #f5f5f5;
+  --bg-light-tertiary-color: #eaeaea;
+
+  /* Text colors */
+
+  /* For dark theme */
+  --text-dark-primary-color: #e0e0e0;
+  --text-dark-secondary-color: #a0a0a0;
+
+  /* For light theme */
+  --text-light-primary-color: #1c1c1c;
+  --text-light-secondary-color: #4f4f4f;
+
+  /* Application */
+
+  /* For Dark theme */
+  --dark-primary-color: #bb86fc;
+  --dark-secondary-color: #9e65f5;
+  --dark-tertiary-color: #a874ff;
+
+  /* For Light theme */
+  --light-primary-color: #00b8d4;
+  --light-secondary-color: #0097a7;
+  --light-tertiary-color: #00a0b0;
+
+  /* Status Indication */
+
+  /* For dark */
+  --dark-success-notification: #00ff7f;
+  --dark-failure-notification: #ff4500;
+  /* For light */
+  --light-success-notification: rgb(0, 255, 0);
+  --light-failure-notification: #ff7f7f;
+
+  --bg-primary-color: var(--bg-dark-primary-color);
+  --bg-secondary-color: var(--bg-dark-secondary-color);
+  --bg-tertiary-color: var(--bg-dark-tertiary-color);
+
+  --text-primary-color: var(--text-dark-primary-color);
+  --text-secondary-color: var(--text-dark-secondary-color);
+
+  --app-primary-color: var(--dark-primary-color);
+  --app-secondary-color: var(--dark-secondary-color);
+  --app-tertiary-color: var(--dark-tertiary-color);
+
+  /* Misc */
+  --add-button: black;
+  --check-button: white;
+  --status-success-indication: var(--dark-success-notification);
+  --status-failure-indication: var(--dark-failure-notification);
+}
+
+.light {
+  --bg-primary-color: var(--bg-light-primary-color);
+  --bg-secondary-color: var(--bg-light-secondary-color);
+  --bg-tertiary-color: var(--bg-light-tertiary-color);
+
+  --text-primary-color: var(--text-light-primary-color);
+  --text-secondary-color: var(--text-light-secondary-color);
+
+  --app-primary-color: var(--light-primary-color);
+  --app-secondary-color: var(--light-secondary-color);
+  --app-tertiary-color: var(--light-tertiary-color);
+
+  /* Misc */
+  --add-button: white;
+  --check-button: black;
+  --status-success-indication: var(--light-success-notification);
+  --status-failure-indication: var(--light-failure-notification);
+}
 
 /* Root level styling */
 body {
@@ -20,31 +101,31 @@ body {
 }
 
 .bg-custom-primary-color {
-  background-color: #121212;
+  background-color: var(--bg-primary-color);
 }
 
 .text-custom-heading-color {
-  color: #bb86fc;
+  color: var(--app-primary-color);
 }
 
 .bg-custom-secondary-color {
-  background-color: #1e1e1e;
+  background-color: var(--bg-secondary-color);
 }
 
 .text-custom-primary-color {
-  color: #e0e0e0;
+  color: var(--text-primary-color);
 }
 
 .text-custom-secondary-color {
-  color: #a0a0a0;
+  color: var(--text-secondary-color);
 }
 
 .btn-custom-color {
-  color: #bb86fc;
+  color: var(--app-primary-color);
 }
 
 .btn-custom-hover-color {
-  color: #9e65f5;
+  color: var(--app-secondary-color);
 }
 /* Root level Styling ends */
 
@@ -68,7 +149,7 @@ body {
 }
 
 .HeaderLogoutButton {
-  color: #a0a0a0;
+  color: var(--text-secondary-color);
   cursor: pointer;
   margin-right: 10px;
   text-align: center;
@@ -78,7 +159,7 @@ body {
 
 /* General Styling ? */
 input:focus {
-  border: 2px solid #9e65f5;
+  border: 2px solid var(--app-secondary-color);
   outline: none;
 }
 /* General Styling ends */
@@ -93,28 +174,33 @@ input:focus {
   display: inline;
   flex: 1;
   border: 1px solid #a0a0a0;
-  color: #e0e0e0;
+  color: var(--text-primary-color);
 }
 
 .addtask-input::placeholder {
-  color: #a0a0a0;
+  color: var(--text-secondary-color);
 }
 
 .add-todo button:hover {
-  background-color: #9e65f5;
+  background-color: var(--app-secondary-color);
+  /* come back here for colors */
 }
 
 .add-todo button:active {
-  background-color: #a874ff;
+  background-color: var(--app-tertiary-color);
+  /* come back here for colors */
 }
 
 .add-todo button {
-  background-color: #bb86fc;
+  background-color: var(--app-primary-color);
   border-radius: 8px;
   padding: 0.5rem;
   outline: none;
   border: none;
   transition: background-color 0.3s ease;
+  /* color: var(--text-primary-color); */
+  /* color: white; */
+  color: var(--add-button);
 }
 
 /* Todo Display Toggle Button Styling */
@@ -135,8 +221,10 @@ input:focus {
 .todoDisplayToggleButton {
   width: 40px;
   height: 20px;
-  background-color: #2d2d2d;
-  border: 1px solid #bb86fc;
+  background-color: var(--bg-tertiary-color);
+  /* background-color: #eee; */
+  /* come back here for colors */
+  border: 1px solid var(--app-primary-color);
   position: relative;
   border-radius: 200px;
   transition: all 0.3s;
@@ -148,23 +236,24 @@ input:focus {
   width: 15px;
   height: 15px;
   margin: 2px;
-  background-color: #bb86fc;
+  background-color: var(--app-primary-color);
   border-radius: 200px;
   transition: all 0.3s;
 }
 
 #todoDisplayToggle:checked + .todoDisplayToggleButton {
-  background-color: #bb86fc;
+  background-color: var(--app-primary-color);
   border: 1px solid #a0a0a0;
 }
 
 #todoDisplayToggle:checked + .todoDisplayToggleButton::before {
-  background-color: #2d2d2d;
+  background-color: var(--bg-tertiary-color);
+  /* come back here for colors */
   transform: translateX(20px);
 }
 
 .todoDisplayToggleInstruction {
-  color: #a0a0a0;
+  color: var(--text-secondary-color);
   font-size: 12px;
 }
 /* Todo Display Toggle Button Styling ends */
@@ -193,7 +282,7 @@ input:focus {
 
 /* Check animation when the todo is marked isDone : true */
 .isTodoCompletedLabel {
-  border: 1px solid white;
+  border: 1px solid var(--check-button);
   width: 15px;
   height: 15px;
   border-radius: 50%;
@@ -205,6 +294,7 @@ input:focus {
 .line {
   display: inline-block;
   background-color: #ffffff;
+  /* come back here for colors */
   transition: 0.3s;
 }
 
@@ -232,8 +322,10 @@ input:focus {
 }
 
 .isTodoCompleted:checked + .isTodoCompletedLabel {
-  background-color: #a874ff;
-  border-color: #a874ff;
+  background-color: var(--app-tertiary-color);
+  /* come back here for colors */
+  border-color: var(--app-tertiary-color);
+  /* come back here for colors */
 }
 /* Check animation when the todo is marked isDone : true  ends*/
 
@@ -261,8 +353,8 @@ input:focus {
   padding-bottom: 5px;
   margin-right: 10px;
   border-radius: 5px;
-  background-color: #1e1e1e;
-  color: #e0e0e0;
+  background-color: var(--bg-secondary-color);
+  color: var(--text-primary-color);
   border: 1px solid #a0a0a0;
 }
 /* Todo Listing styling ends (ListTodos.jsx)  */
@@ -270,11 +362,11 @@ input:focus {
 /* Login Styling (LoginForm.jsx) */
 
 .LoginContainer {
-  background-color: #121212;
+  background-color: var(--bg-primary-color);
 }
 
 .LoginForm {
-  background-color: #1e1e1e;
+  background-color: var(--bg-secondary-color);
   height: 500px;
   width: 500px;
   margin-top: 55px;
@@ -287,12 +379,12 @@ input:focus {
 }
 
 .LoginFormHeading {
-  color: #bb86fc;
+  color: var(--app-primary-color);
   text-align: center;
 }
 
 .LoginFormParagraph {
-  color: #a0a0a0;
+  color: var(--text-secondary-color);
   font-size: 17px;
   margin-bottom: 16px;
   text-align: center;
@@ -315,27 +407,27 @@ input:focus {
 }
 
 .LoginForm .InputGroup input {
-  background-color: #121212 !important;
+  background-color: var(--bg-primary-color) !important;
   padding: 10px 16px;
   border-radius: 8px;
-  color: #e0e0e0 !important;
+  color: var(--text-primary-color) !important;
   border: 1px solid #2d2d2d;
 }
 
 .LoginForm .InputGroup input:focus {
-  background-color: #121212 !important;
+  background-color: var(--bg-primary-color) !important;
   padding: 10px 16px;
   border-radius: 8px;
-  color: #e0e0e0;
-  border: 1px solid #bb86fc !important;
+  color: var(--text-primary-color);
+  border: 1px solid var(--app-primary-color) !important;
 }
 
 .LoginForm .InputGroup input:active {
-  background-color: #121212 !important;
+  background-color: var(--bg-primary-color) !important;
   padding: 10px 16px;
   border-radius: 8px;
-  color: #e0e0e0;
-  border: 1px solid #bb86fc !important;
+  color: var(--text-primary-color);
+  border: 1px solid var(--app-primary-color) !important;
 }
 
 /* Deepseek recommendation for autofill  -  Don't know but it magically works*/
@@ -343,30 +435,32 @@ input:focus {
 .LoginForm .InputGroup input:-webkit-autofill:hover,
 .LoginForm .InputGroup input:-webkit-autofill:focus,
 .LoginForm .InputGroup input:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0 30px #121212 inset !important;
-  -webkit-text-fill-color: #e0e0e0 !important;
-  caret-color: #e0e0e0;
-  border: 1px solid #bb86fc !important;
+  -webkit-box-shadow: 0 0 0 30px var(--bg-primary-color) inset !important;
+  /* here to */
+  -webkit-text-fill-color: var(--text-primary-color) !important;
+  caret-color: var(--text-primary-color);
+  border: 1px solid var(--app-primary-color) !important;
 }
 
 .LoginForm button {
   margin-top: 10px;
-  background-color: #bb86fc;
+  background-color: var(--app-primary-color);
   border-radius: 8px;
   padding: 10px 16px;
   transition: 0.3s;
+  color: var(--add-button);
 }
 
 .LoginForm button:hover {
-  background-color: #9e65f5;
+  background-color: var(--app-secondary-color); /* come back here for colors */
 }
 
 .InputGroup label {
-  color: #e0e0e0;
+  color: var(--text-primary-color);
 }
 
 .divider {
-  color: #a0a0a0;
+  color: var(--text-secondary-color);
   display: flex;
   align-items: center;
   margin: 1.5rem 0;
@@ -390,43 +484,42 @@ input:focus {
 
 .footer {
   text-align: center;
-  color: #a0a0a0;
+  color: var(--text-secondary-color);
 }
 
 .SignupLink {
   text-decoration: none;
-  color: #bb86fc;
+  color: var(--app-primary-color);
 }
 
 .SignupLink:hover {
-  color: #9e65f5;
+  color: var(--app-secondary-color);
 }
 /* Login Styling ends (LoginForm.jsx) */
 
 /* Signup Styling (SignupForm.jsx) */
 
 .SignupContainer {
-  background-color: #121212;
-  /* background-color: red; */
+  background-color: var(--bg-primary-color);
   min-height: 100vh;
 }
 
 .SignupForm {
   height: 580px;
   width: 500px;
-  background-color: #1e1e1e;
+  background-color: var(--bg-secondary-color);
   margin-top: 55px;
   border-radius: 12px;
   padding: 2.5rem;
 }
 
 .SignupFormHeading {
-  color: #bb86fc;
+  color: var(--app-primary-color);
   text-align: center;
 }
 
 .SignupFormParagraph {
-  color: #a0a0a0;
+  color: var(--text-secondary-color);
   text-align: center;
   font-size: 17px;
   margin-bottom: 16px;
@@ -439,27 +532,28 @@ input:focus {
 }
 
 .SignupForm label {
-  color: #e0e0e0;
+  color: var(--text-primary-color);
 }
 
 .SignupForm form input {
-  background-color: #121212;
+  background-color: var(--bg-primary-color);
   padding: 10px 16px;
   border-radius: 8px;
-  color: #e0e0e0;
+  color: var(--text-primary-color);
   border: 1px solid #2d2d2d;
 }
 
 .SignupForm form button {
   margin-top: 10px;
-  background-color: #bb86fc;
+  background-color: var(--app-primary-color);
   border-radius: 8px;
   padding: 10px 16px;
   transition: 0.3s;
+  color: var(--add-button);
 }
 
 .SignupForm form button:hover {
-  color: #9e65f5;
+  color: var(--app-secondary-color);
 }
 
 .SignupForm .footer {
@@ -468,17 +562,17 @@ input:focus {
 
 .SignupForm .footer span .LoginLink {
   text-decoration: none;
-  color: #bb86fc;
+  color: var(--app-primary-color);
   transition: 0.3s;
 }
 
 .SignupForm .footer span .LoginLink:hover {
-  color: #9e65f5;
+  color: var(--app-secondary-color);
 }
 
 .SignupForm .InputGroup input:active,
 .SignupForm .InputGroup input:focus {
-  border: #9e65f5 1px solid;
+  border: 1px var(--app-secondary-color) solid;
 }
 
 input::-webkit-contacts-auto-fill-button,
@@ -494,18 +588,18 @@ input::-webkit-credentials-auto-fill-button {
 .SignupForm .InputGroup input:-webkit-autofill:hover,
 .SignupForm .InputGroup input:-webkit-autofill:focus,
 .SignupForm .InputGroup input:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0 30px #121212 inset !important;
-  -webkit-text-fill-color: #e0e0e0 !important;
-  caret-color: #e0e0e0;
-  border: 1px solid #bb86fc !important;
+  -webkit-box-shadow: 0 0 0 30px var(--bg-primary-color) inset !important;
+  -webkit-text-fill-color: var(--text-primary-color) !important;
+  caret-color: var(--text-primary-color);
+  border: 1px solid var(--app-primary-color) !important;
 }
 
 .SignupForm .InputGroup .failureIndication:focus {
-  border: 1px solid #ff4500;
+  border: 1px solid var(--status-failure-indication);
 }
 
 .SignupForm .InputGroup .successIndication:focus {
-  border: 1px solid #00ff7f;
+  border: 1px solid var(--status-success-indication);
 }
 
 /* Signup Styling ends (SignupForm.jsx) */
