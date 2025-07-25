@@ -3,9 +3,9 @@ import axios from "axios";
 import TodoHeading from "../Components/TodoHeading.jsx";
 import AddTodo from "../Components/AddTodo.jsx";
 import ListTodos from "../Components/ListTodos.jsx";
-import { successNotification,errorNotification } from "../Utils/Notifications.js";
+import { successNotification, errorNotification } from "../Utils/Notifications.js";
 import CheckSound1 from "../Assets/CheckSound1.mp3";
-import {checkDefaultTheme} from '../src/App.jsx';
+import { checkDefaultTheme } from '../src/App.jsx';
 
 const Home = () => {
 
@@ -15,13 +15,13 @@ const Home = () => {
     new Audio(CheckSound1).play();
   }
 
-    // Use States
+  // Use States
   const [isEditing, setEditing] = useState(null);
 
-  const [displayCompleteTodos,setDisplayCompleteTodos] = useState(false);
+  const [displayCompleteTodos, setDisplayCompleteTodos] = useState(false);
 
-  const [user,setUser] = useState({
-    name:""
+  const [user, setUser] = useState({
+    name: ""
   })
 
   const [data, setData] = useState({
@@ -34,23 +34,23 @@ const Home = () => {
 
   const [todos, setTodos] = useState([]);
 
-  const [isLightTheme,setLightTheme] = useState(checkDefaultTheme());
+  const [isLightTheme, setLightTheme] = useState(checkDefaultTheme());
 
   // const [forceRender,setForceRerender] = useState(false);
 
-//   useRefs
+  //   useRefs
   const addInputRef = useRef(null);
 
   // Event Listeners for tasks
   const fetchData = async () => {
     try {
       let apiData;
-      if(displayCompleteTodos){
+      if (displayCompleteTodos) {
         //  apiData = await axios.get("/api/v1/todos?isDone=true");
-         apiData = await axios.get(`${apiUrl}/api/v1/todos?isDone=true`,{withCredentials:true});
-      }else{
+        apiData = await axios.get(`${apiUrl}/api/v1/todos?isDone=true`, { withCredentials: true });
+      } else {
         //  apiData = await axios.get("/api/v1/todos?isDone=false")
-         apiData = await axios.get(`${apiUrl}/api/v1/todos?isDone=false`,{withCredentials:true});
+        apiData = await axios.get(`${apiUrl}/api/v1/todos?isDone=false`, { withCredentials: true });
       }
       // apiData = await axios.get('/api/v1/todos');
       console.log(apiData.data);
@@ -60,11 +60,11 @@ const Home = () => {
       }
     } catch (error) {
       console.log(error);
-      if((error.response.data.message === "No todos found") || (error.response.data.message === "No todo found with this id")){
+      if ((error.response.data.message === "No todos found") || (error.response.data.message === "No todo found with this id")) {
         // const successNotificationMessage = displayCompleteTodos ? "No completed todos found" : "No imcomplete todos left !";
         // successNotification(successNotificationMessage);
         console.log("Either all the todos have been comleted or deleted");
-     }
+      }
     }
   };
 
@@ -72,8 +72,8 @@ const Home = () => {
   const toggleTheme = () => {
     const currentTheme = !isLightTheme;
     setLightTheme(currentTheme);
-    document.body.classList.toggle('light',currentTheme);
-    localStorage.setItem('light-theme',currentTheme);
+    document.body.classList.toggle('light', currentTheme);
+    localStorage.setItem('light-theme', currentTheme);
   }
 
   const displayCompletedTodos = (e) => {
@@ -88,7 +88,7 @@ const Home = () => {
 
     try {
       // await axios.post("/api/v1/add", data);
-      await axios.post(`${apiUrl}/api/v1/add`, data,{withCredentials:true});
+      await axios.post(`${apiUrl}/api/v1/add`, data, { withCredentials: true });
       data.title = "";
       addInputRef.current.focus();
       fetchData();
@@ -101,42 +101,42 @@ const Home = () => {
 
     try {
       // await axios.delete(`/api/v1/delete/${id}`);
-      await axios.delete(`${apiUrl}/api/v1/delete/${id}`,{withCredentials:true});
+      await axios.delete(`${apiUrl}/api/v1/delete/${id}`, { withCredentials: true });
       fetchData();
       successNotification("Task deleted Successfully");
     } catch (error) {
       console.log(error);
-      if(error.response.data.message === "No todo found with this id"){
+      if (error.response.data.message === "No todo found with this id") {
         console.log("This error occurs as the todo is deleted but not from the display");
       }
     }
   };
 
   const editTask = async (id, isDone) => {
-    if(!isDone){
-    playCheckSound();
+    if (!isDone) {
+      playCheckSound();
     }
     const body = {
       isDone: !isDone,
     };
 
-    const updatedTodos = todos.map(todo => todo._id === id ? {...todo,isDone:!isDone} : todo);
+    const updatedTodos = todos.map(todo => todo._id === id ? { ...todo, isDone: !isDone } : todo);
 
     setTodos(updatedTodos);
 
     try {
       // await axios.put(`/api/v1/edit/${id}`, body);
-      await axios.put(`${apiUrl}/api/v1/edit/${id}`, body,{withCredentials:true});
+      await axios.put(`${apiUrl}/api/v1/edit/${id}`, body, { withCredentials: true });
 
-      if(!isDone){
-      successNotification("Task completed successfully");
+      if (!isDone) {
+        successNotification("Task completed successfully");
       }
       // fetchData();
 
     } catch (error) {
       console.log(error);
-    } finally{
-      setTimeout(fetchData,500);
+    } finally {
+      setTimeout(fetchData, 500);
     }
   };
   // const geminiEditTask = async (id, isDone) => {
@@ -183,13 +183,13 @@ const Home = () => {
   //   const body = {
   //     isDone: !isDone,
   //   };
-  
+
   //   // Optimistically update the todos state
   //   const updatedTodos = todos.map((todo) =>
   //     todo._id === id ? { ...todo, isDone: !isDone } : todo
   //   );
   //   setTodos(updatedTodos);
-  
+
   //   try {
   //     await axios.put(`/api/v1/edit/${id}`, body);
   //     // If it was the last incomplete todo and we were viewing incomplete ones
@@ -231,18 +231,18 @@ const Home = () => {
 
   // }
 
-const getUser = async() => {
+  const getUser = async () => {
 
     try {
       //  const res = await axios.get('/api/v1/user/auth');
-       const res = await axios.get(`${apiUrl}/api/v1/user/auth`,{withCredentials:true});
-       setUser({name:res.data.data.name});
+      const res = await axios.get(`${apiUrl}/api/v1/user/auth`, { withCredentials: true });
+      setUser({ name: res.data.data.name });
     } catch (error) {
-        
+
     }
 
-}
-  
+  }
+
   const editTodoTitle = async (id) => {
     const body = {
       title: editData.title,
@@ -250,7 +250,7 @@ const getUser = async() => {
 
     try {
       // await axios.put(`/api/v1/edit/${id}`, body);
-      await axios.put(`${apiUrl}/api/v1/edit/${id}`, body,{withCredentials:true});
+      await axios.put(`${apiUrl}/api/v1/edit/${id}`, body, { withCredentials: true });
       fetchData();
       // setEditing(null);
       setEditData({
@@ -271,8 +271,8 @@ const getUser = async() => {
 
   return (
     <>
-    <div className="container-fluid Container position-relative bg-custom-primary-color align-items-center d-flex flex-column">
-        <TodoHeading user={user} isLightTheme={isLightTheme} toggleTheme={toggleTheme}/>
+      <div className="container-fluid Container position-relative bg-custom-primary-color align-items-center d-flex flex-column">
+        <TodoHeading user={user} isLightTheme={isLightTheme} toggleTheme={toggleTheme} />
         <AddTodo addTask={addTask} addInputRef={addInputRef} setData={setData} data={data} displayCompletedTodos={displayCompletedTodos} />
         <ListTodos todos={todos} editTask={editTask} isEditing={isEditing} editData={editData} setEditData={setEditData} editTodoTitle={editTodoTitle} setEditing={setEditing} deleteTask={deleteTask} />
       </div>
