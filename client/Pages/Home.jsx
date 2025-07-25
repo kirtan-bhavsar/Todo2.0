@@ -68,6 +68,7 @@ const Home = () => {
     }
   };
 
+  // toggle theme functionality
   const toggleTheme = () => {
     const currentTheme = !isLightTheme;
     setLightTheme(currentTheme);
