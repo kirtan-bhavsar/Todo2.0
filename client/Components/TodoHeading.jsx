@@ -5,8 +5,9 @@ import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
 import { successNotification,errorNotification } from "../Utils/Notifications";
 import { useState } from "react";
+import {FaMoon} from 'react-icons/fa';
 
-const TodoHeading = ({user}) => {
+const TodoHeading = ({user,isLightTheme,toggleTheme}) => {
 
     const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -40,6 +41,7 @@ const TodoHeading = ({user}) => {
         <div className="HeaderContainer">
             {/* <h1 className="text-custom-heading-color HeaderHeadingPage my-2 fw-bold">My Todos</h1> */}
             <h1 className="text-custom-heading-color HeaderHeading fw-bold">Hello {user.name}! - What is on your List?</h1>
+            <FaMoon onClick={toggleTheme}></FaMoon>
             {/* <h1 className="text-custom-heading-color HeaderHeading fw-bold">`${user.name}`</h1> */}
             <FontAwesomeIcon icon={faArrowRightFromBracket} className="HeaderLogoutButton" onClick={logout}></FontAwesomeIcon>
             </div>
