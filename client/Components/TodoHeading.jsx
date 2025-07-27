@@ -6,7 +6,7 @@
     import { useNavigate } from "react-router-dom";
     import { successNotification, errorNotification } from "../Utils/Notifications";
     import { useState } from "react";
-    import { FaMoon } from "react-icons/fa";
+    import { FaMoon,FaLock } from "react-icons/fa";
     import {HiSun} from 'react-icons/hi';
 
     const TodoHeading = ({ user, isLightTheme, toggleTheme }) => {
@@ -64,6 +64,9 @@
                 <button onClick={logout} className="dropdown-list-item">Logout
                 <FontAwesomeIcon
             icon={faArrowRightFromBracket}></FontAwesomeIcon>
+                </button>
+                <button className="dropdown-list-item">Change Password
+                <FaLock></FaLock>
                 </button>
             </div>
             </div>

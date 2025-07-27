@@ -161,4 +161,48 @@ const authorizeUser = async (req, res) => {
   }
 };
 
-export { registerUser, loginUser, logoutUser, authorizeUser, testUser };
+const changePassword = async (req, res) => {
+  try {
+    const userId = req.user.id;
+
+    const user = await User.findById(userId);
+
+    const { currentPassword, newPassword, confirmPassword } = req.body;
+
+    // Logic to check if the current password is correct
+    const isCorrectCurrentPassword = await bcrypt.compare(
+      currentPassword,
+      user.password
+    );
+
+    if (!isCorrectCurrentPassword) {
+      return res.status(400).json({ message: "Incorrect current password" });
+    }
+
+    // Logic to check if the newly entered passwords match.
+    if (newPassword !== confirmPassword) {
+      return res
+        .status(400)
+        .json({ message: "Entered passwords do not match" });
+    }
+
+    const hashedPassword = await user.hashPassword(newPassword);
+
+    user.password = hashedPassword;
+
+    await user.save();
+
+    res.status(200).json({ message: "Password Updated successfully" });
+  } catch (error) {
+    return res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
+export {
+  registerUser,
+  loginUser,
+  logoutUser,
+  authorizeUser,
+  testUser,
+  changePassword,
+};
