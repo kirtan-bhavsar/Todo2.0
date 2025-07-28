@@ -659,3 +659,114 @@ input::-webkit-credentials-auto-fill-button {
 }
 
 /* Signup Styling ends (SignupForm.jsx) */
+
+/* Change Password Styling starts */
+
+.ChangePasswordContainer {
+  /* background-color: red; */
+  background-color: var(--bg-primary-color);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ChangePassword {
+  height: 480px;
+  width: 500px;
+  background-color: var(--bg-secondary-color);
+  margin-top: 55px;
+  border-radius: 12px;
+  padding: 2.5rem;
+}
+
+.ChangePasswordHeading {
+  color: var(--app-primary-color);
+  text-align: center;
+}
+
+.ChangePasswordParagraph {
+  color: var(--text-secondary-color);
+  text-align: center;
+  font-size: 17px;
+  margin-bottom: 16px;
+}
+
+.ChangePassword form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ChangePassword label {
+  color: var(--text-primary-color);
+}
+
+.ChangePassword form input {
+  background-color: var(--bg-primary-color);
+  padding: 10px 16px;
+  border-radius: 8px;
+  color: var(--text-primary-color);
+  border: 1px solid #2d2d2d;
+}
+
+.ChangePassword form button {
+  margin-top: 10px;
+  background-color: var(--app-primary-color);
+  border-radius: 8px;
+  padding: 10px 16px;
+  transition: 0.3s;
+  color: var(--add-button);
+}
+
+.ChangePassword form button:hover {
+  color: var(--app-secondary-color);
+}
+
+.ChangePassword .footer {
+  margin-top: 15px;
+}
+
+.ChangePassword .footer span .LoginLink {
+  text-decoration: none;
+  color: var(--app-primary-color);
+  transition: 0.3s;
+}
+
+.ChangePassword .footer span .LoginLink:hover {
+  color: var(--app-secondary-color);
+}
+
+.ChangePassword .InputGroup input:active,
+.ChangePassword .InputGroup input:focus {
+  border: 1px var(--app-secondary-color) solid;
+}
+
+input::-webkit-contacts-auto-fill-button,
+input::-webkit-credentials-auto-fill-button {
+  visibility: hidden;
+  display: none !important;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+}
+
+.ChangePassword .InputGroup input:-webkit-autofill,
+.ChangePassword .InputGroup input:-webkit-autofill:hover,
+.ChangePassword .InputGroup input:-webkit-autofill:focus,
+.ChangePassword .InputGroup input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px var(--bg-primary-color) inset !important;
+  -webkit-text-fill-color: var(--text-primary-color) !important;
+  caret-color: var(--text-primary-color);
+  border: 1px solid var(--app-primary-color) !important;
+}
+
+.ChangePassword .InputGroup .failureIndication:focus {
+  border: 1px solid var(--status-failure-indication);
+}
+
+.ChangePassword .InputGroup .successIndication:focus {
+  border: 1px solid var(--status-success-indication);
+}
+
+/* Change Password Styling ends */
