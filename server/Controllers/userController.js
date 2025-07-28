@@ -192,7 +192,15 @@ const changePassword = async (req, res) => {
 
     await user.save();
 
-    res.status(200).json({ message: "Password Updated successfully" });
+    res
+      .cookie("jwtToken", "none", {
+        httpOnly: true,
+        expires: new Date(Date.now() + 1 * 1000),
+        secure: true,
+        sameSite: "None",
+      })
+      .status(200)
+      .json({ message: "Password Updated successfully" });
   } catch (error) {
     return res.status(500).json({ message: "Internal Server Error" });
   }
