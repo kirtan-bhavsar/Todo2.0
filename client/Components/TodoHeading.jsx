@@ -8,18 +8,26 @@
     import { useState } from "react";
     import { FaMoon,FaLock } from "react-icons/fa";
     import {HiSun} from 'react-icons/hi';
+import ChangePassword from "../Pages/ChangePassword";
 
     const TodoHeading = ({ user, isLightTheme, toggleTheme }) => {
 
     const [displayDropdown,setDisplayDropdown] = useState(false);
 
     const apiUrl = import.meta.env.VITE_API_URL;
+// import ChangePassword from './../Pages/ChangePassword';
 
     const navigate = useNavigate();
 
     //   const showDropdown = () => {
     //     setDisplayDropdown(!displayDropdown);
     //   }
+
+    const changePassword = (e) => {
+
+        navigate('/change-password');
+
+    }
 
     const logout = async () => {
         try {
@@ -65,7 +73,7 @@
                 <FontAwesomeIcon
             icon={faArrowRightFromBracket}></FontAwesomeIcon>
                 </button>
-                <button className="dropdown-list-item">Change Password
+                <button onClick={(e) => changePassword(e)} className="dropdown-list-item">Change Password
                 <FaLock></FaLock>
                 </button>
             </div>

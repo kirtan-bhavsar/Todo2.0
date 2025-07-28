@@ -162,6 +162,7 @@ const authorizeUser = async (req, res) => {
 };
 
 const changePassword = async (req, res) => {
+  console.log("change password api called");
   try {
     const userId = req.user.id;
 
@@ -202,7 +203,9 @@ const changePassword = async (req, res) => {
       .status(200)
       .json({ message: "Password Updated successfully" });
   } catch (error) {
-    return res.status(500).json({ message: "Internal Server Error" });
+    return res.status(500).json({
+      message: "Internal Server Error",
+    });
   }
 };
 

@@ -17,8 +17,6 @@ const SignupForm = () => {
   const getPassword = (e) => {
     let enteredConfirmPassword = e.target.value;
 
-    // enteredConfirmPassword = enteredConfirmPassword.trim();
-    
     console.log(enteredConfirmPassword + " enteredConfirmPassword");
 
     matchPassword(enteredConfirmPassword);

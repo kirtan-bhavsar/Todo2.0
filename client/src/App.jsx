@@ -12,6 +12,7 @@ import Signup from "../Pages/Signup.jsx";
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import ChangePassword from "../Pages/ChangePassword.jsx";
 
 // demo comment to check if the commit is made to Todo2.0
 // first commit of V3
@@ -36,6 +37,7 @@ const App = () => {
       <Route path="/login" element={<Login/>}></Route>
       <Route path="/signup" element={<Signup/>}></Route>
       <Route path="/home" element={<Home/>}></Route>
+      <Route path="/change-password" element={<ChangePassword/>}></Route>
       </Routes>
       </Router>
       <ToastContainer></ToastContainer>
