@@ -3,6 +3,8 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import config from "dotenv/config";
 import generateToken from "../Utils/generateToken.js";
+import generateOtp from "../Utils/generateOtp.js";
+import sendOtpMail from "../Utils/sendOtpMail.js";
 
 // @api : /api/v1/user/register
 // @desc Used to register a user
@@ -154,15 +156,11 @@ const authorizeUser = async (req, res) => {
   try {
     res.status(200).json({ data: user, message: "User logged in" });
   } catch (error) {
-    console.log("error log starts");
-    console.log(error + " logged error");
-    console.log("error log ends");
     return res.status(500).json({ message: error });
   }
 };
 
 const changePassword = async (req, res) => {
-  console.log("change password api called");
   try {
     const userId = req.user.id;
 
@@ -209,6 +207,110 @@ const changePassword = async (req, res) => {
   }
 };
 
+const authenticateEmail = async (req, res) => {
+  try {
+    const email = req.body.email;
+
+    if (!email) {
+      return res.status(400).json({ message: "Email id cannot be blank" });
+    }
+
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    if (!emailRegex.test(email)) {
+      return res
+        .status(400)
+        .json({ message: "Please provide a valid email id" });
+    }
+
+    const user = await User.findOne({ email: email });
+
+    if (!user) {
+      return res.status(400).json({ message: "No user found with mail" });
+    }
+
+    const otp = await generateOtp();
+
+    user.otp = otp;
+    user.otpExpiresAt = Date.now() + 10 * 60 * 1000;
+
+    await user.save();
+
+    // sending otp to customer via email
+    sendOtpMail(res, email, otp);
+
+    // res.status(200).json({ message: "OTP Sent to your email id" });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const resetPassword = async (req, res) => {
+  try {
+    const { otp, password, confirmPassword } = req.body;
+
+    if (!otp) {
+      return res
+        .status(400)
+        .json({ message: "Please provide an OTP to proceed ahead" });
+    }
+
+    if (!password) {
+      return res
+        .status(400)
+        .json({ message: "Please provide an PASSWORD to proceed ahead" });
+    }
+
+    if (!confirmPassword) {
+      return res.status(400).json({
+        message: "Please provide an CONFIRMPASconfirmPassword to proceed ahead",
+      });
+    }
+
+    if (password !== confirmPassword) {
+      return res.status(400).json({ message: "Passwords do not match" });
+    }
+
+    const email = req.cookies.resetEmail;
+
+    if (!email) {
+      return res
+        .status(400)
+        .json({ message: "You request get timed out, Please try again" });
+    }
+
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return res
+        .status(400)
+        .json({ message: "No user found with this mail id" });
+    }
+
+    if (user.otpExpiresAt - Date.now() < 600) {
+      return res.status(400).json({ message: "OTP expired, please try again" });
+    }
+
+    if (otp === user.otp) {
+      user.otp = null;
+      user.otpExpiresAt = null;
+
+      const hashedPassword = await user.hashPassword(password);
+
+      user.password = hashedPassword;
+
+      await user.save();
+    } else {
+      return res.status(400).json({ message: "Invalid OTP" });
+    }
+
+    res.status(200).json({ message: "Password reset was successful" });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
 export {
   registerUser,
   loginUser,
@@ -216,4 +318,6 @@ export {
   authorizeUser,
   testUser,
   changePassword,
+  authenticateEmail,
+  resetPassword,
 };
