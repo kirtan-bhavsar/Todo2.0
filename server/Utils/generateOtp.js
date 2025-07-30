@@ -8,6 +8,9 @@ const generateOtp = async (email) => {
     lowerCaseAlphabets: false,
   });
 
+  console.log(otp);
+  console.log("otp");
+  console.log("otp");
   return otp;
 };
 
