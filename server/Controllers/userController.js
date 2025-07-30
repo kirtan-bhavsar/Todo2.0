@@ -156,15 +156,11 @@ const authorizeUser = async (req, res) => {
   try {
     res.status(200).json({ data: user, message: "User logged in" });
   } catch (error) {
-    console.log("error log starts");
-    console.log(error + " logged error");
-    console.log("error log ends");
     return res.status(500).json({ message: error });
   }
 };
 
 const changePassword = async (req, res) => {
-  console.log("change password api called");
   try {
     const userId = req.user.id;
 
@@ -233,8 +229,6 @@ const authenticateEmail = async (req, res) => {
       return res.status(400).json({ message: "No user found with mail" });
     }
 
-    console.log(user);
-
     const otp = await generateOtp();
 
     user.otp = otp;
@@ -252,9 +246,69 @@ const authenticateEmail = async (req, res) => {
 };
 
 const resetPassword = async (req, res) => {
-  // const { otp, password, confirmPassword } = req.body;
+  try {
+    const { otp, password, confirmPassword } = req.body;
 
-  res.status(200).json({ message: "Reset Password called successfully" });
+    if (!otp) {
+      return res
+        .status(400)
+        .json({ message: "Please provide an OTP to proceed ahead" });
+    }
+
+    if (!password) {
+      return res
+        .status(400)
+        .json({ message: "Please provide an PASSWORD to proceed ahead" });
+    }
+
+    if (!confirmPassword) {
+      return res.status(400).json({
+        message: "Please provide an CONFIRMPASconfirmPassword to proceed ahead",
+      });
+    }
+
+    if (password !== confirmPassword) {
+      return res.status(400).json({ message: "Passwords do not match" });
+    }
+
+    const email = req.cookies.resetEmail;
+
+    if (!email) {
+      return res
+        .status(400)
+        .json({ message: "You request get timed out, Please try again" });
+    }
+
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return res
+        .status(400)
+        .json({ message: "No user found with this mail id" });
+    }
+
+    if (user.otpExpiresAt - Date.now() < 600) {
+      return res.status(400).json({ message: "OTP expired, please try again" });
+    }
+
+    if (otp === user.otp) {
+      user.otp = null;
+      user.otpExpiresAt = null;
+
+      const hashedPassword = await user.hashPassword(password);
+
+      user.password = hashedPassword;
+
+      await user.save();
+    } else {
+      return res.status(400).json({ message: "Invalid OTP" });
+    }
+
+    res.status(200).json({ message: "Password reset was successful" });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: "Internal Server Error" });
+  }
 };
 
 export {
