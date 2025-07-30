@@ -4,7 +4,7 @@ import bcrypt from "bcrypt";
 import config from "dotenv/config";
 import generateToken from "../Utils/generateToken.js";
 import generateOtp from "../Utils/generateOtp.js";
-// import sendOtpMail from "../Utils/sendOtpMail.js";
+import sendOtpMail from "../Utils/sendOtpMail.js";
 
 // @api : /api/v1/user/register
 // @desc Used to register a user
@@ -243,9 +243,9 @@ const authenticateEmail = async (req, res) => {
     await user.save();
 
     // sending otp to customer via email
-    // sendOtpMail(mail, otp);
+    sendOtpMail(res, email, otp);
 
-    res.status(200).json({ message: "OTP Sent to your email id" });
+    // res.status(200).json({ message: "OTP Sent to your email id" });
   } catch (error) {
     console.log(error);
   }
