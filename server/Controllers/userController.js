@@ -3,6 +3,8 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import config from "dotenv/config";
 import generateToken from "../Utils/generateToken.js";
+import generateOtp from "../Utils/generateOtp.js";
+// import sendOtpMail from "../Utils/sendOtpMail.js";
 
 // @api : /api/v1/user/register
 // @desc Used to register a user
@@ -209,6 +211,46 @@ const changePassword = async (req, res) => {
   }
 };
 
+const authenticateEmail = async (req, res) => {
+  try {
+    const email = req.body.email;
+
+    if (!email) {
+      return res.status(400).json({ message: "Email id cannot be blank" });
+    }
+
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    if (!emailRegex.test(email)) {
+      return res
+        .status(400)
+        .json({ message: "Please provide a valid email id" });
+    }
+
+    const user = await User.findOne({ email: email });
+
+    if (!user) {
+      return res.status(400).json({ message: "No user found with mail" });
+    }
+
+    console.log(user);
+
+    const otp = await generateOtp();
+
+    user.otp = otp;
+    user.otpExpiresAt = Date.now() + 10 * 60 * 1000;
+
+    await user.save();
+
+    // sending otp to customer via email
+    // sendOtpMail(mail, otp);
+
+    res.status(200).json({ message: "OTP Sent to your email id" });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export {
   registerUser,
   loginUser,
@@ -216,4 +258,5 @@ export {
   authorizeUser,
   testUser,
   changePassword,
+  authenticateEmail,
 };

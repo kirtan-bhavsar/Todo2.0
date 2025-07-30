@@ -13,6 +13,12 @@ const userSchema = new mongoose.Schema({
   name: {
     type: String,
   },
+  otp: {
+    type: String,
+  },
+  otpExpiresAt: {
+    type: Date,
+  },
 });
 
 userSchema.methods.hashPassword = async function (userPassword) {
