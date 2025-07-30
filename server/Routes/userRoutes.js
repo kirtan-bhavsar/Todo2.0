@@ -7,6 +7,7 @@ import {
   testUser,
   changePassword,
   authenticateEmail,
+  resetPassword,
 } from "../Controllers/userController.js";
 import auth from "../middleware/auth.js";
 
@@ -23,6 +24,8 @@ userRouter.get("/auth", auth, authorizeUser);
 userRouter.post("/change-password", auth, changePassword);
 
 userRouter.post("/forgot-password/email", authenticateEmail);
+
+userRouter.post("/forgot-password/reset-password", resetPassword);
 
 // userRouter.get("/test", auth, testUser);
 

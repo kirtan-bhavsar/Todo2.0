@@ -251,6 +251,12 @@ const authenticateEmail = async (req, res) => {
   }
 };
 
+const resetPassword = async (req, res) => {
+  // const { otp, password, confirmPassword } = req.body;
+
+  res.status(200).json({ message: "Reset Password called successfully" });
+};
+
 export {
   registerUser,
   loginUser,
@@ -259,4 +265,5 @@ export {
   testUser,
   changePassword,
   authenticateEmail,
+  resetPassword,
 };
