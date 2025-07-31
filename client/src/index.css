@@ -770,3 +770,113 @@ input::-webkit-credentials-auto-fill-button {
 }
 
 /* Change Password Styling ends */
+
+/* Authenticate Email Styling starts */
+.AuthenticateEmailContainer {
+  /* background-color: red; */
+  background-color: var(--bg-primary-color);
+  min-height: 100vh;
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+}
+
+.AuthenticateEmail {
+  height: 350px;
+  width: 500px;
+  background-color: var(--bg-secondary-color);
+  margin-top: 55px;
+  border-radius: 12px;
+  padding: 2.5rem;
+}
+
+.AuthenticateEmailHeading {
+  color: var(--app-primary-color);
+  text-align: center;
+}
+
+.AuthenticateEmailParagraph {
+  color: var(--text-secondary-color);
+  text-align: center;
+  font-size: 17px;
+  margin-bottom: 16px;
+}
+
+.AuthenticateEmail form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.AuthenticateEmail label {
+  color: var(--text-primary-color);
+}
+
+.AuthenticateEmail form input {
+  background-color: var(--bg-primary-color);
+  padding: 10px 16px;
+  border-radius: 8px;
+  color: var(--text-primary-color);
+  border: 1px solid #2d2d2d;
+}
+
+.AuthenticateEmail form button {
+  margin-top: 10px;
+  background-color: var(--app-primary-color);
+  border-radius: 8px;
+  padding: 10px 16px;
+  transition: 0.3s;
+  color: var(--add-button);
+}
+
+.AuthenticateEmail form button:hover {
+  color: var(--app-secondary-color);
+}
+
+.AuthenticateEmail .footer {
+  margin-top: 15px;
+}
+
+.AuthenticateEmail .footer span .LoginLink {
+  text-decoration: none;
+  color: var(--app-primary-color);
+  transition: 0.3s;
+}
+
+.AuthenticateEmail .footer span .LoginLink:hover {
+  color: var(--app-secondary-color);
+}
+
+.AuthenticateEmail .InputGroup input:active,
+.AuthenticateEmail .InputGroup input:focus {
+  border: 1px var(--app-secondary-color) solid;
+}
+
+input::-webkit-contacts-auto-fill-button,
+input::-webkit-credentials-auto-fill-button {
+  visibility: hidden;
+  display: none !important;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+}
+
+.AuthenticateEmail .InputGroup input:-webkit-autofill,
+.AuthenticateEmail .InputGroup input:-webkit-autofill:hover,
+.AuthenticateEmail .InputGroup input:-webkit-autofill:focus,
+.AuthenticateEmail .InputGroup input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px var(--bg-primary-color) inset !important;
+  -webkit-text-fill-color: var(--text-primary-color) !important;
+  caret-color: var(--text-primary-color);
+  border: 1px solid var(--app-primary-color) !important;
+}
+
+.AuthenticateEmail .InputGroup .failureIndication:focus {
+  border: 1px solid var(--status-failure-indication);
+}
+
+.AuthenticateEmail .InputGroup .successIndication:focus {
+  border: 1px solid var(--status-success-indication);
+}
+
+/* Authenticate Email Styling ends */

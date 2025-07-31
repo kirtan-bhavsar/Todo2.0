@@ -208,6 +208,8 @@ const changePassword = async (req, res) => {
 };
 
 const authenticateEmail = async (req, res) => {
+  console.log("authenticateEmail called");
+
   try {
     const email = req.body.email;
 
@@ -246,6 +248,8 @@ const authenticateEmail = async (req, res) => {
 };
 
 const resetPassword = async (req, res) => {
+  console.log("reset password called");
+
   try {
     const { otp, password, confirmPassword } = req.body;
 
@@ -300,11 +304,19 @@ const resetPassword = async (req, res) => {
       user.password = hashedPassword;
 
       await user.save();
+
+      res
+        .cookie("resetEmail", null, {
+          httpOnly: true,
+          expires: new Date(Date.now() + 1 * 60 * 1000),
+          secure: true,
+          sameSite: "None",
+        })
+        .status(200)
+        .json({ message: "Password reset was successful" });
     } else {
       return res.status(400).json({ message: "Invalid OTP" });
     }
-
-    res.status(200).json({ message: "Password reset was successful" });
   } catch (error) {
     console.log(error);
     return res.status(500).json({ message: "Internal Server Error" });
