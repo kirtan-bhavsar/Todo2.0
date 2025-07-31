@@ -65,17 +65,17 @@ import ChangePassword from "../Pages/ChangePassword";
             <div className="dropdown">
             <FaBars onClick={() => setDisplayDropdown(!displayDropdown)} className="dropdown-button"></FaBars>
             <div  className={displayDropdown ? "dropdown-list active" : "dropdown-list"}>
-                <button onClick={toggleTheme} className="dropdown-list-item">Theme
+                <button onClick={toggleTheme} className="dropdown-list-item">
                 {/* <FaMoon></FaMoon> */}
                 {isLightTheme ? <FaMoon></FaMoon> : <HiSun style={{fontSize:"24px"}}></HiSun>}
-                </button>
-                <button onClick={logout} className="dropdown-list-item">Logout
+                Theme</button>
+                <button onClick={logout} className="dropdown-list-item">
                 <FontAwesomeIcon
             icon={faArrowRightFromBracket}></FontAwesomeIcon>
-                </button>
-                <button onClick={(e) => changePassword(e)} className="dropdown-list-item">Change Password
+                Logout</button>
+                <button onClick={(e) => changePassword(e)} className="dropdown-list-item">
                 <FaLock></FaLock>
-                </button>
+                Change Password</button>
             </div>
             </div>
         </div>
