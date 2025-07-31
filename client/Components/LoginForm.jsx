@@ -57,6 +57,7 @@ const LoginForm = () => {
     </form>
     <div className="divider">or</div>
     <div className="footer">Don't have an account? <span><Link className="SignupLink" to='/signup'>Sign up</Link></span></div>
+    <div className="footer"> <span><Link className="SignupLink" to='/forgot-password/authenticate-email'>Forgot Password?</Link></span></div>
     </div>
     {/* <ToastContainer></ToastContainer> */}
     </>
