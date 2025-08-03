@@ -34,7 +34,10 @@ const createTodo = async (req, res) => {
 
     res.status(200).json({ message: "Todo Added Successfully", data: todo });
   } catch (error) {
-    return res.status(500).json({ message: "Internal Server Error" });
+    console.log(error);
+    return res
+      .status(500)
+      .json({ message: "Internal Server Error while creating a todo" });
   }
 };
 

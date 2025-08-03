@@ -51,6 +51,9 @@ const registerUser = async (req, res) => {
 
   user.save();
 
+  // Add a default category as soon as a user gets registered
+  // as they'll be generating a todo, so there has to be a default category to be included with the provided todo
+
   generateToken(res, user);
 
   // // Generate Token
