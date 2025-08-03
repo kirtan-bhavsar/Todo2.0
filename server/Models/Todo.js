@@ -13,6 +13,10 @@ const todoSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "user",
   },
+  category: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "category",
+  },
 });
 
 const Todo = mongoose.model("todo", todoSchema);
