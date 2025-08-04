@@ -1,4 +1,5 @@
 import User from "../Models/User.js";
+import Category from "../Models/Category.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import config from "dotenv/config";
@@ -53,6 +54,13 @@ const registerUser = async (req, res) => {
 
   // Add a default category as soon as a user gets registered
   // as they'll be generating a todo, so there has to be a default category to be included with the provided todo
+
+  const category = new Category({
+    userId: user.id,
+    category: "Default",
+  });
+
+  category.save();
 
   generateToken(res, user);
 
