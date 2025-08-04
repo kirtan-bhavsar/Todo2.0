@@ -4,6 +4,7 @@ import connectDB from "./db.js";
 import todoRouter from "./Routes/todoRoutes.js";
 import cors from "cors";
 import userRouter from "./Routes/userRoutes.js";
+import categoryRouter from "./Routes/categoryRoutes.js";
 import cookieParser from "cookie-parser";
 
 const app = express();
@@ -28,6 +29,7 @@ connectDB();
 // Mount Routers
 app.use("/api/v1", todoRouter);
 app.use("/api/v1/user", userRouter);
+app.use("/api/v1/category", categoryRouter);
 
 // Remove this when going into production
 app.get("/api/v1/test", (req, res) => {
