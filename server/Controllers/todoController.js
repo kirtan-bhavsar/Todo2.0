@@ -33,7 +33,7 @@ const createTodo = async (req, res) => {
 
   try {
     req.body.title = req.body.title.trim();
-    req.body.category = userCategory[0].userId;
+    req.body.category = userCategory[0].id;
 
     if (!req.body.title) {
       return res.status(400).json({ message: "Title is required" });
@@ -59,6 +59,11 @@ const createTodo = async (req, res) => {
 // @access private
 const getAllTodos = async (req, res) => {
   const isDone = req.query.isDone;
+  const category = req.query.category || "Default";
+
+  console.log(category);
+  console.log("category");
+  console.log("category");
 
   if (isDone) {
     console.log(req.query);
@@ -80,14 +85,37 @@ const getAllTodos = async (req, res) => {
     return res.status(400).json({ message: "No user found" });
   }
 
+  const userCategory = await Category.find({ category, userId });
+
+  console.log(userCategory[0].id.toString());
+  console.log("userCategory");
+  console.log("userCategory");
+
+  if (userCategory.length === 0) {
+    return res.status(400).json({ message: "No category found" });
+  }
+
   try {
     let todos;
 
     if (isDone) {
-      todos = await Todo.find({ user: userExists._id, isDone: isDone });
+      todos = await Todo.find({
+        user: userExists._id,
+        isDone: isDone,
+        category: userCategory[0].id,
+      });
+      console.log(todos);
+      console.log("todos");
+      console.log("todos");
     } else {
       // const todos = await Todo.find({ user: userExists._id, isDone: false });
-      todos = await Todo.find({ user: userExists._id });
+      todos = await Todo.find({
+        user: userExists._id,
+        category: userCategory[0].id,
+      });
+      console.log(todos);
+      console.log("todos");
+      console.log("todos");
     }
     // const todos = await Todo.find({ user: userExists._id });
 
