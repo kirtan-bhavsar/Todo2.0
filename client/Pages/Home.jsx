@@ -20,6 +20,7 @@ const Home = () => {
   const [isEditing, setEditing] = useState(null);
 
   const [categories,setCategories] = useState([]);
+  const [category,setCategory] = useState("Default");
 
   const [displayCompleteTodos, setDisplayCompleteTodos] = useState(false);
 
@@ -29,6 +30,7 @@ const Home = () => {
 
   const [data, setData] = useState({
     title: "",
+    category:"",
   });
 
   const [editData, setEditData] = useState({
@@ -39,7 +41,6 @@ const Home = () => {
 
   const [isLightTheme, setLightTheme] = useState(checkDefaultTheme());
 
-  // const [forceRender,setForceRerender] = useState(false);
 
   //   useRefs
   const addInputRef = useRef(null);
@@ -50,21 +51,23 @@ const Home = () => {
       let apiData;
       if (displayCompleteTodos) {
         //  apiData = await axios.get("/api/v1/todos?isDone=true");
-        apiData = await axios.get(`${apiUrl}/api/v1/todos?isDone=true`, { withCredentials: true });
+        apiData = await axios.get(`${apiUrl}/api/v1/todos?isDone=true&category=${category}`, { withCredentials: true });
+        console.log(apiData);
+        console.log("apiData");
+        console.log("apiData");
       } else {
         //  apiData = await axios.get("/api/v1/todos?isDone=false")
-        apiData = await axios.get(`${apiUrl}/api/v1/todos?isDone=false`, { withCredentials: true });
+        apiData = await axios.get(`${apiUrl}/api/v1/todos?isDone=false&category=${category}`, { withCredentials: true });
       }
       // apiData = await axios.get('/api/v1/todos');
 
       const categoryData = await axios.get(`${apiUrl}/api/v1/category`,{withCredentials:true});
 
       setCategories(categoryData.data.categories);
-      console.log(categoryData.data.categories);
-      console.log("categoryData.data.categories");
-      console.log("categoryData.data.categories");
-
-      console.log(apiData.data);
+      // console.log(categoryData.data.categories);
+      // console.log("categoryData.data.categories");
+      // console.log("categoryData.data.categories");
+      // console.log(apiData.data);
       setTodos(apiData.data);
       if (isEditing) {
         setEditing(null);
@@ -74,7 +77,7 @@ const Home = () => {
       if ((error.response.data.message === "No todos found") || (error.response.data.message === "No todo found with this id")) {
         // const successNotificationMessage = displayCompleteTodos ? "No completed todos found" : "No imcomplete todos left !";
         // successNotification(successNotificationMessage);
-        console.log("Either all the todos have been comleted or deleted");
+        // console.log("Either all the todos have been comleted or deleted");
       }
     }
   };
@@ -99,6 +102,10 @@ const Home = () => {
 
     try {
       // await axios.post("/api/v1/add", data);
+      data.category = category;
+      console.log(data);
+      console.log("todo data as passed to createTodo api");
+      console.log("todo data as passed to createTodo api");
       await axios.post(`${apiUrl}/api/v1/add`, data, { withCredentials: true });
       data.title = "";
       addInputRef.current.focus();
@@ -118,10 +125,17 @@ const Home = () => {
     } catch (error) {
       console.log(error);
       if (error.response.data.message === "No todo found with this id") {
-        console.log("This error occurs as the todo is deleted but not from the display");
+        // console.log("This error occurs as the todo is deleted but not from the display");
       }
     }
   };
+
+  const changeCategory = async(category) => {
+
+    setCategory(category);
+    // fetchData();
+
+  }
 
   const editTask = async (id, isDone) => {
     if (!isDone) {
@@ -268,7 +282,7 @@ const Home = () => {
         title: "",
       });
       successNotification("Task edited successfully");
-      console.log("Edit Todo Title called after clicking check butotn");
+      // console.log("Edit Todo Title called after clicking check butotn");
     } catch (error) {
       console.log(error);
     }
@@ -278,14 +292,14 @@ const Home = () => {
   useEffect(() => {
     fetchData();
     getUser();
-  }, [displayCompleteTodos]);
+  }, [displayCompleteTodos,category]);
 
   return (
     <>
       <div className="container-fluid Container position-relative bg-custom-primary-color align-items-center d-flex flex-column">
         <TodoHeading user={user} isLightTheme={isLightTheme} toggleTheme={toggleTheme} />
         <AddTodo addTask={addTask} addInputRef={addInputRef} setData={setData} data={data} displayCompletedTodos={displayCompletedTodos} />
-        <Categories categories={categories}></Categories>
+        <Categories categories={categories} changeCategory={changeCategory} category={category}></Categories>
         <ListTodos todos={todos} editTask={editTask} isEditing={isEditing} editData={editData} setEditData={setEditData} editTodoTitle={editTodoTitle} setEditing={setEditing} deleteTask={deleteTask} />
       </div>
     </>
