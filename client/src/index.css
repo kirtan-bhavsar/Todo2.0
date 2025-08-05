@@ -319,6 +319,7 @@ input:focus {
 
 .list-todos {
   width: 50%;
+  /* background-color: red; */
 }
 
 .list-todos li {
@@ -880,3 +881,48 @@ input::-webkit-credentials-auto-fill-button {
 }
 
 /* Authenticate Email Styling ends */
+
+/* Categories Styling Starts */
+/* 
+.Categories-Container {
+  width: 50%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 5px;
+  margin-top: 10px;
+}
+
+.category {
+  background-color: blue;
+  padding: 5px 10px;
+  border-radius: 50px;
+  background-color: var(--bg-dark-secondary-color);
+  color: var(--text-dark-secondary-color);
+  border: 1px solid var(--text-dark-secondary-color);
+} */
+
+.Categories-Container {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  /* background-color: red; */
+  width: 50%;
+}
+
+.category-box {
+  flex: 1 1 calc(25% - 12px); /* Up to 4 in a row */
+  min-width: 180px;
+  max-width: 50%;
+  /* background-color: red; */
+  padding: 5px 15px;
+  border: 1px solid var(--text-primary-color);
+  border-radius: 50px;
+  background-color: var(--bg-secondary-color);
+  color: var(--text-primary-color);
+  font-size: 14px;
+  box-sizing: border-box;
+  word-break: break-word; /* Allows long text to wrap */
+}
+
+/* Categories Styling Ends */
