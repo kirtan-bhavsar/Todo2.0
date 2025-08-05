@@ -9,6 +9,14 @@ const createTodo = async (req, res) => {
   const userId = req.user.id;
   const category = req.body.category || "Default";
 
+  console.log(req.body);
+  console.log("req.body as received in createTodo api");
+  console.log("req.body as received in createTodo api");
+
+  console.log(category);
+  console.log("category as received in createTodo api");
+  console.log("category as received in createTodo api");
+
   if (!userId) {
     return res
       .status(400)
@@ -21,9 +29,9 @@ const createTodo = async (req, res) => {
     return res.status(400).json({ message: "Category Not Found" });
   }
 
-  console.log(userCategory);
-  console.log("userCategory");
-  console.log("userCategory");
+  // console.log(userCategory);
+  // console.log("userCategory");
+  // console.log("userCategory");
 
   const userExists = await User.findOne({ _id: userId });
 
@@ -61,9 +69,9 @@ const getAllTodos = async (req, res) => {
   const isDone = req.query.isDone;
   const category = req.query.category || "Default";
 
-  console.log(category);
-  console.log("category");
-  console.log("category");
+  // console.log(category);
+  // console.log("category");
+  // console.log("category");
 
   if (isDone) {
     console.log(req.query);
@@ -87,9 +95,9 @@ const getAllTodos = async (req, res) => {
 
   const userCategory = await Category.find({ category, userId });
 
-  console.log(userCategory[0].id.toString());
-  console.log("userCategory");
-  console.log("userCategory");
+  // console.log(userCategory[0].id.toString());
+  // console.log("userCategory");
+  // console.log("userCategory");
 
   if (userCategory.length === 0) {
     return res.status(400).json({ message: "No category found" });
@@ -104,18 +112,18 @@ const getAllTodos = async (req, res) => {
         isDone: isDone,
         category: userCategory[0].id,
       });
-      console.log(todos);
-      console.log("todos");
-      console.log("todos");
+      // console.log(todos);
+      // console.log("todos");
+      // console.log("todos");
     } else {
       // const todos = await Todo.find({ user: userExists._id, isDone: false });
       todos = await Todo.find({
         user: userExists._id,
         category: userCategory[0].id,
       });
-      console.log(todos);
-      console.log("todos");
-      console.log("todos");
+      // console.log(todos);
+      // console.log("todos");
+      // console.log("todos");
     }
     // const todos = await Todo.find({ user: userExists._id });
 

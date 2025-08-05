@@ -55,7 +55,7 @@ const getCategories = async (req, res) => {
 
     const categories = await Category.find({ userId });
 
-    console.log(categories);
+    // console.log(categories);
 
     res
       .status(200)

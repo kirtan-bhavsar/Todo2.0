@@ -923,6 +923,16 @@ input::-webkit-credentials-auto-fill-button {
   font-size: 14px;
   box-sizing: border-box;
   word-break: break-word; /* Allows long text to wrap */
+  cursor: pointer;
+}
+
+.active-category {
+  background-color: var(--app-secondary-color);
+  color: var(--bg-primary-color);
+  border-color: var(--app-secondary-color);
+  font-weight: 600;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease-in-out;
 }
 
 /* Categories Styling Ends */
