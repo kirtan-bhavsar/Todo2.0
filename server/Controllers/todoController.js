@@ -1,17 +1,29 @@
 import Todo from "../Models/Todo.js";
 import User from "../Models/User.js";
+import Category from "../Models/Category.js";
 
 // @desc Api to create a todo
 // @api : /api/v1/add
 // @access Private
 const createTodo = async (req, res) => {
   const userId = req.user.id;
+  const category = req.body.category || "Default";
 
   if (!userId) {
     return res
       .status(400)
       .json({ message: "User not authorized to perform this action" });
   }
+
+  const userCategory = await Category.find({ category, userId });
+
+  if (userCategory.length === 0) {
+    return res.status(400).json({ message: "Category Not Found" });
+  }
+
+  console.log(userCategory);
+  console.log("userCategory");
+  console.log("userCategory");
 
   const userExists = await User.findOne({ _id: userId });
 
@@ -21,6 +33,7 @@ const createTodo = async (req, res) => {
 
   try {
     req.body.title = req.body.title.trim();
+    req.body.category = userCategory[0].userId;
 
     if (!req.body.title) {
       return res.status(400).json({ message: "Title is required" });

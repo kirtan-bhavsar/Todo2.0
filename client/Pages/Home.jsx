@@ -6,6 +6,7 @@ import ListTodos from "../Components/ListTodos.jsx";
 import { successNotification, errorNotification } from "../Utils/Notifications.js";
 import CheckSound1 from "../Assets/CheckSound1.mp3";
 import { checkDefaultTheme } from '../src/App.jsx';
+import Categories from "../Components/Categories.jsx";
 
 const Home = () => {
 
@@ -17,6 +18,8 @@ const Home = () => {
 
   // Use States
   const [isEditing, setEditing] = useState(null);
+
+  const [categories,setCategories] = useState([]);
 
   const [displayCompleteTodos, setDisplayCompleteTodos] = useState(false);
 
@@ -53,6 +56,14 @@ const Home = () => {
         apiData = await axios.get(`${apiUrl}/api/v1/todos?isDone=false`, { withCredentials: true });
       }
       // apiData = await axios.get('/api/v1/todos');
+
+      const categoryData = await axios.get(`${apiUrl}/api/v1/category`,{withCredentials:true});
+
+      setCategories(categoryData.data.categories);
+      console.log(categoryData.data.categories);
+      console.log("categoryData.data.categories");
+      console.log("categoryData.data.categories");
+
       console.log(apiData.data);
       setTodos(apiData.data);
       if (isEditing) {
@@ -274,6 +285,7 @@ const Home = () => {
       <div className="container-fluid Container position-relative bg-custom-primary-color align-items-center d-flex flex-column">
         <TodoHeading user={user} isLightTheme={isLightTheme} toggleTheme={toggleTheme} />
         <AddTodo addTask={addTask} addInputRef={addInputRef} setData={setData} data={data} displayCompletedTodos={displayCompletedTodos} />
+        <Categories categories={categories}></Categories>
         <ListTodos todos={todos} editTask={editTask} isEditing={isEditing} editData={editData} setEditData={setEditData} editTodoTitle={editTodoTitle} setEditing={setEditing} deleteTask={deleteTask} />
       </div>
     </>
