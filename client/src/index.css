@@ -399,7 +399,18 @@ input:focus {
 /* when click on the check button this short animation is being applied  */
 .isTodoCompleted:checked ~ .titleDisplaySpan {
   text-decoration: line-through;
+
+  /* animation: todoDrag 0.5s; */
+  /* animation: todoDrag 0.5s timing-function delay iteration-count direction fill-mode; */
 }
+/* 
+@keyframes todoDrag {
+  from {
+  }
+  to {
+    transform: translateX(1000px);
+  }
+} */
 
 .titleDisplaySpan {
   padding-bottom: 5px;
@@ -933,6 +944,31 @@ input::-webkit-credentials-auto-fill-button {
   font-weight: 600;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   transition: all 0.2s ease-in-out;
+}
+
+.add-category-button {
+  min-width: 40px;
+  /* background-color: red; */
+  padding: 5px 15px;
+  border: 1px solid var(--text-primary-color);
+  border-radius: 50px;
+  background-color: var(--bg-secondary-color);
+  color: var(--text-primary-color);
+}
+
+.add-category input {
+  min-width: 180px;
+  max-width: 50%;
+  /* background-color: red; */
+  padding: 5px 15px;
+  border: 1px solid var(--text-primary-color);
+  border-radius: 50px;
+  background-color: var(--bg-secondary-color);
+  color: var(--text-primary-color);
+  font-size: 14px;
+  box-sizing: border-box;
+  word-break: break-word; /* Allows long text to wrap */
+  cursor: pointer;
 }
 
 /* Categories Styling Ends */
