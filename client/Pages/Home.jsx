@@ -21,6 +21,7 @@ const Home = () => {
 
   const [categories,setCategories] = useState([]);
   const [category,setCategory] = useState("Default");
+  const [showAddCategory,setShowAddCategory] = useState(false);
 
   const [displayCompleteTodos, setDisplayCompleteTodos] = useState(false);
 
@@ -134,6 +135,34 @@ const Home = () => {
 
     setCategory(category);
     // fetchData();
+
+  }
+
+  const addCategory = async(e) => {
+
+    e.preventDefault();
+
+    try {
+
+    const category = e.target.category.value;
+
+    console.log(e.target.category.value);
+    console.log("e.target.category.value for addCategory");
+    console.log("e.target.category.value for addCategory");
+
+    await axios.post(`${apiUrl}/api/v1/category/add`,{category}, { withCredentials: true })
+
+    setShowAddCategory(false);
+
+    successNotification("Category added successfully");
+
+    setCategory(category);
+
+    fetchData();
+
+    } catch (error) {
+      
+    }
 
   }
 
@@ -299,7 +328,7 @@ const Home = () => {
       <div className="container-fluid Container position-relative bg-custom-primary-color align-items-center d-flex flex-column">
         <TodoHeading user={user} isLightTheme={isLightTheme} toggleTheme={toggleTheme} />
         <AddTodo addTask={addTask} addInputRef={addInputRef} setData={setData} data={data} displayCompletedTodos={displayCompletedTodos} />
-        <Categories categories={categories} changeCategory={changeCategory} category={category}></Categories>
+        <Categories categories={categories} changeCategory={changeCategory} category={category} addCategory={addCategory} showAddCategory={showAddCategory} setShowAddCategory={setShowAddCategory}></Categories>
         <ListTodos todos={todos} editTask={editTask} isEditing={isEditing} editData={editData} setEditData={setEditData} editTodoTitle={editTodoTitle} setEditing={setEditing} deleteTask={deleteTask} />
       </div>
     </>
