@@ -9,7 +9,6 @@ import axios from 'axios';
 
 const ChangePassword = () => {
 
-    
   const apiUrl = import.meta.env.VITE_API_URL;
   const navigate = useNavigate();
     const [formData,setFormData] = useState({

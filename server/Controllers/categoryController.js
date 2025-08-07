@@ -19,7 +19,7 @@ const addCategory = async (req, res) => {
     const ifCategoryExists = await Category.find({ category: categoryTitle });
 
     if (ifCategoryExists.length > 0) {
-      return res.status(400).json({ message: "Category already exits" });
+      return res.status(400).json({ message: "Category already exists" });
     }
 
     categoryTitle.trim();
