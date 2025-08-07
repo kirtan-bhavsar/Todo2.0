@@ -161,7 +161,9 @@ const Home = () => {
     fetchData();
 
     } catch (error) {
-      
+      setShowAddCategory(false);
+      console.log(error);
+      return errorNotification(error?.response?.data?.message);
     }
 
   }

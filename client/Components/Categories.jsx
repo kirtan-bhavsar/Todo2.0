@@ -1,4 +1,6 @@
 import React from "react";
+// import {FaSolidX} from 'react-icons/fa';
+import {HiXMark} from 'react-icons/hi2';
 
 const Categories = ({categories,changeCategory,category,addCategory,showAddCategory,setShowAddCategory}) => {
     return(
@@ -6,7 +8,7 @@ const Categories = ({categories,changeCategory,category,addCategory,showAddCateg
             {categories.map((individualCategory) => {
                 return(
                     <div className={ category === individualCategory.category ? "category-box active-category" : "category-box" } onClick={() => changeCategory(individualCategory.category)}>
-                        {individualCategory.category}
+                        {individualCategory.category}<span><HiXMark></HiXMark></span>
                     </div>
                 )
             })}

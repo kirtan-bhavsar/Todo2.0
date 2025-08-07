@@ -937,6 +937,31 @@ input::-webkit-credentials-auto-fill-button {
   cursor: pointer;
 }
 
+.category-box span {
+  display: none;
+}
+
+.category-box:hover {
+  display: flex;
+  justify-content: space-between;
+}
+
+.category-box:hover span {
+  /* display: block; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
+  width: inherit;
+  height: inherit;
+  border-radius: 75%;
+}
+
+.category-box span:hover {
+  border: 1px solid var(--text-primary-color);
+  padding: 2px;
+}
+
 .active-category {
   background-color: var(--app-secondary-color);
   color: var(--bg-primary-color);
@@ -946,20 +971,30 @@ input::-webkit-credentials-auto-fill-button {
   transition: all 0.2s ease-in-out;
 }
 
+.active-category span:hover {
+  /* border: var(--app-secondary-color); */
+  border-color: var(--bg-primary-color);
+  /* border-color: red; */
+}
+
 .add-category-button {
   min-width: 40px;
-  /* background-color: red; */
-  padding: 5px 15px;
+  padding: 2px 15px;
   border: 1px solid var(--text-primary-color);
   border-radius: 50px;
   background-color: var(--bg-secondary-color);
   color: var(--text-primary-color);
+  cursor: pointer;
+}
+
+.add-category-button:hover {
+  background-color: var(--bg-primary-color);
+  border-color: var(--text-secondary-color-color);
 }
 
 .add-category input {
   min-width: 180px;
   max-width: 50%;
-  /* background-color: red; */
   padding: 5px 15px;
   border: 1px solid var(--text-primary-color);
   border-radius: 50px;
@@ -967,7 +1002,7 @@ input::-webkit-credentials-auto-fill-button {
   color: var(--text-primary-color);
   font-size: 14px;
   box-sizing: border-box;
-  word-break: break-word; /* Allows long text to wrap */
+  word-break: break-word;
   cursor: pointer;
 }
 
