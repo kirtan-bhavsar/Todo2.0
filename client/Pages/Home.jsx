@@ -138,6 +138,24 @@ const Home = () => {
 
   }
 
+  const deleteCategory = async(id) => {
+
+  const confirmDelete = window.confirm("This will all delete all the todos for this category. Are you sure you want to proceed ahead ?");
+  
+  if(confirmDelete){
+   try {
+    await axios.delete(`${apiUrl}/api/v1/category/delete/${id}`,{withCredentials:true});
+    fetchData();
+    setCategory("Default");
+    return successNotification("Category and associated todos deleted successfully");
+   } catch (error) {
+    console.log(error);
+    return errorNotification(error?.response?.data?.message);
+   }
+  }
+   
+  }
+
   const addCategory = async(e) => {
 
     e.preventDefault();
@@ -330,7 +348,7 @@ const Home = () => {
       <div className="container-fluid Container position-relative bg-custom-primary-color align-items-center d-flex flex-column">
         <TodoHeading user={user} isLightTheme={isLightTheme} toggleTheme={toggleTheme} />
         <AddTodo addTask={addTask} addInputRef={addInputRef} setData={setData} data={data} displayCompletedTodos={displayCompletedTodos} />
-        <Categories categories={categories} changeCategory={changeCategory} category={category} addCategory={addCategory} showAddCategory={showAddCategory} setShowAddCategory={setShowAddCategory}></Categories>
+        <Categories categories={categories} changeCategory={changeCategory} category={category} addCategory={addCategory} showAddCategory={showAddCategory} setShowAddCategory={setShowAddCategory} deleteCategory={deleteCategory}></Categories>
         <ListTodos todos={todos} editTask={editTask} isEditing={isEditing} editData={editData} setEditData={setEditData} editTodoTitle={editTodoTitle} setEditing={setEditing} deleteTask={deleteTask} />
       </div>
     </>
