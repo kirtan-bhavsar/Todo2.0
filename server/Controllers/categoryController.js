@@ -1,5 +1,6 @@
 import User from "../Models/User.js";
 import Category from "../Models/Category.js";
+import Todo from "../Models/Todo.js";
 
 // @desc Api to add a category
 // @api : POST /api/v1/category/add
@@ -98,6 +99,12 @@ const deleteCategory = async (req, res) => {
         .status(400)
         .json({ message: "User not authorized to perform this action" });
     }
+
+    // const todos = await Todo.find({ user: userId, category: categoryId });
+
+    // console.log(todos);
+
+    await Todo.deleteMany({ user: userId, category: categoryId });
 
     await Category.findByIdAndDelete({ _id: categoryId });
 
