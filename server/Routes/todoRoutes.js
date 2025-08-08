@@ -1,5 +1,6 @@
 import express from "express";
 import {
+  changeTodoCategory,
   createTodo,
   deleteTodo,
   editTodo,
@@ -28,5 +29,7 @@ todoRouter.delete("/delete/:id", auth, deleteTodo);
 // to handle these error cases with necessary json response as defined in the controller
 todoRouter.delete("/delete/", auth, deleteTodo);
 todoRouter.delete("/delete", auth, deleteTodo);
+
+todoRouter.put("/edit/category/:todoId/:categoryId", auth, changeTodoCategory);
 
 export default todoRouter;

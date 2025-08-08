@@ -303,4 +303,47 @@ const deleteTodo = async (req, res) => {
   }
 };
 
-export { createTodo, editTodo, getAllTodos, getTodoById, deleteTodo };
+const changeTodoCategory = async (req, res) => {
+  try {
+    const userId = req.user.id;
+
+    if (!userId) {
+      return res
+        .status(400)
+        .json({ message: "User not authorized to perform this action" });
+    }
+
+    const todoId = req.params.todoId;
+
+    if (!todoId) {
+      return res.status(400).json({ message: "Todo not found" });
+    }
+
+    const categoryId = req.params.categoryId;
+
+    if (!categoryId) {
+      return res.status(400).json({ message: "Category not found" });
+    }
+
+    const data = await Todo.find({ _id: todoId });
+
+    const todo = data[0];
+
+    todo.category = categoryId;
+
+    todo.save();
+
+    res.status(200).json({ message: "Category updated successfully" });
+  } catch (error) {
+    return console.log(error);
+  }
+};
+
+export {
+  createTodo,
+  editTodo,
+  getAllTodos,
+  getTodoById,
+  deleteTodo,
+  changeTodoCategory,
+};
