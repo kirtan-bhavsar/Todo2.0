@@ -172,11 +172,12 @@ const Home = () => {
 
     setShowAddCategory(false);
 
-    successNotification("Category added successfully");
-
     setCategory(category);
 
     fetchData();
+    
+    return successNotification("Category added successfully");
+
 
     } catch (error) {
       setShowAddCategory(false);
