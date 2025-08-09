@@ -6,13 +6,16 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
-const ListTodos = ({todos,editTask,isEditing,editData,setEditData,editTodoTitle,setEditing ,deleteTask}) => {
+const ListTodos = ({todos,editTask,isEditing,editData,setEditData,editTodoTitle,setEditing ,deleteTask,setDraggedTodo}) => {
   return (
     <><div className="list-todos">
               { todos.length === 0 ? (<p className='text-custom-primary-color py-5 text-center'>No Todos Left !! Add New Ones</p>) : (
               todos.map((todo) => {
                 return (
-                  <li className='text-custom-primary-color singleTodoContainer my-3' key={todo._id}>
+                  <li draggable onDragStart={() => {
+                    setDraggedTodo(todo._id);
+                    // console.log(`dragged todo : ${todo._id}`);
+                  }} onDragEnd={() => setDraggedTodo(null)} className='text-custom-primary-color singleTodoContainer my-3' key={todo._id}>
                     <div className="todo-task d-flex bg-custom-secondary-color py-3 h-25">
                       {/* <span style={{ width: "5%" }} className="checkSpan"> */}
                       {/* <span className="checkSpan"> */}
