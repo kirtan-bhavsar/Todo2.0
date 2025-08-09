@@ -317,6 +317,22 @@ const Home = () => {
 
   }
 
+  const changeTodoCategory = async(todoId,categoryId) => {
+
+    try {
+      
+      await axios.put(`${apiUrl}/api/v1/edit/category/${todoId}/${categoryId}`,{},{withCredentials:true});
+
+      fetchData();
+
+      return successNotification("Todo category changed successfully");
+
+    } catch (error) {
+      
+    }
+
+  }
+
   const editTodoTitle = async (id) => {
     const body = {
       title: editData.title,
@@ -348,7 +364,7 @@ const Home = () => {
       <div className="container-fluid Container position-relative bg-custom-primary-color align-items-center d-flex flex-column">
         <TodoHeading user={user} isLightTheme={isLightTheme} toggleTheme={toggleTheme} />
         <AddTodo addTask={addTask} addInputRef={addInputRef} setData={setData} data={data} displayCompletedTodos={displayCompletedTodos} />
-        <Categories  categories={categories} changeCategory={changeCategory} category={category} addCategory={addCategory} showAddCategory={showAddCategory} setShowAddCategory={setShowAddCategory} deleteCategory={deleteCategory}></Categories>
+        <Categories changeTodoCategory={changeTodoCategory} draggedTodo={draggedTodo}  categories={categories} changeCategory={changeCategory} category={category} addCategory={addCategory} showAddCategory={showAddCategory} setShowAddCategory={setShowAddCategory} deleteCategory={deleteCategory}></Categories>
         <ListTodos setDraggedTodo={setDraggedTodo} todos={todos} editTask={editTask} isEditing={isEditing} editData={editData} setEditData={setEditData} editTodoTitle={editTodoTitle} setEditing={setEditing} deleteTask={deleteTask} />
       </div>
     </>
