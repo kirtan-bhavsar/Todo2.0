@@ -324,11 +324,18 @@ input:focus {
 
 .list-todos li {
   list-style: none;
+  /* background-color: red; */
 }
 
 .todo-task {
   align-items: center;
   border-radius: 8px;
+  /* background-color: red; */
+}
+
+.todo-task:active {
+  opacity: 0.7;
+  border: 1px solid var(--text-secondary-color);
 }
 
 /* Provides a pointer effect when hovered over edit or delete button */
@@ -1007,3 +1014,19 @@ input::-webkit-credentials-auto-fill-button {
 }
 
 /* Categories Styling Ends */
+
+/* Drop area styling starts */
+
+.hide-drop-area {
+  visibility: hidden;
+}
+
+.drop-area {
+  display: block;
+  height: 30px;
+  width: 50px;
+  background-color: red;
+  border-radius: 50px;
+}
+
+/* Drop area styling ends */

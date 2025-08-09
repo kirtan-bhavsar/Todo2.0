@@ -18,7 +18,7 @@ const Home = () => {
 
   // Use States
   const [isEditing, setEditing] = useState(null);
-
+  const [draggedTodo,setDraggedTodo] = useState(null);
   const [categories,setCategories] = useState([]);
   const [category,setCategory] = useState("Default");
   const [showAddCategory,setShowAddCategory] = useState(false);
@@ -177,7 +177,6 @@ const Home = () => {
     fetchData();
     
     return successNotification("Category added successfully");
-
 
     } catch (error) {
       setShowAddCategory(false);
@@ -349,8 +348,8 @@ const Home = () => {
       <div className="container-fluid Container position-relative bg-custom-primary-color align-items-center d-flex flex-column">
         <TodoHeading user={user} isLightTheme={isLightTheme} toggleTheme={toggleTheme} />
         <AddTodo addTask={addTask} addInputRef={addInputRef} setData={setData} data={data} displayCompletedTodos={displayCompletedTodos} />
-        <Categories categories={categories} changeCategory={changeCategory} category={category} addCategory={addCategory} showAddCategory={showAddCategory} setShowAddCategory={setShowAddCategory} deleteCategory={deleteCategory}></Categories>
-        <ListTodos todos={todos} editTask={editTask} isEditing={isEditing} editData={editData} setEditData={setEditData} editTodoTitle={editTodoTitle} setEditing={setEditing} deleteTask={deleteTask} />
+        <Categories  categories={categories} changeCategory={changeCategory} category={category} addCategory={addCategory} showAddCategory={showAddCategory} setShowAddCategory={setShowAddCategory} deleteCategory={deleteCategory}></Categories>
+        <ListTodos setDraggedTodo={setDraggedTodo} todos={todos} editTask={editTask} isEditing={isEditing} editData={editData} setEditData={setEditData} editTodoTitle={editTodoTitle} setEditing={setEditing} deleteTask={deleteTask} />
       </div>
     </>
   )
