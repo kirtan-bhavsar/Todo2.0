@@ -45,6 +45,7 @@ const Home = () => {
 
   //   useRefs
   const addInputRef = useRef(null);
+  const addCategoryRef = useRef(null);
 
   // Event Listeners for tasks
   const fetchData = async () => {
@@ -159,6 +160,7 @@ const Home = () => {
   const addCategory = async(e) => {
 
     e.preventDefault();
+    addCategoryRef.current.focus();
 
     try {
 
@@ -364,7 +366,7 @@ const Home = () => {
       <div className="container-fluid Container position-relative bg-custom-primary-color align-items-center d-flex flex-column">
         <TodoHeading user={user} isLightTheme={isLightTheme} toggleTheme={toggleTheme} />
         <AddTodo addTask={addTask} addInputRef={addInputRef} setData={setData} data={data} displayCompletedTodos={displayCompletedTodos} />
-        <Categories changeTodoCategory={changeTodoCategory} draggedTodo={draggedTodo}  categories={categories} changeCategory={changeCategory} category={category} addCategory={addCategory} showAddCategory={showAddCategory} setShowAddCategory={setShowAddCategory} deleteCategory={deleteCategory}></Categories>
+        <Categories addCategoryRef={addCategoryRef} changeTodoCategory={changeTodoCategory} draggedTodo={draggedTodo}  categories={categories} changeCategory={changeCategory} category={category} addCategory={addCategory} showAddCategory={showAddCategory} setShowAddCategory={setShowAddCategory} deleteCategory={deleteCategory}></Categories>
         <ListTodos setDraggedTodo={setDraggedTodo} todos={todos} editTask={editTask} isEditing={isEditing} editData={editData} setEditData={setEditData} editTodoTitle={editTodoTitle} setEditing={setEditing} deleteTask={deleteTask} />
       </div>
     </>
