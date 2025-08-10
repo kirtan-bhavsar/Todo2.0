@@ -12,7 +12,8 @@ const Categories = ({
   setShowAddCategory,
   deleteCategory,
   draggedTodo,
-  changeTodoCategory
+  changeTodoCategory,
+  addCategoryRef
 }) => {
   // const [visibleDrop, setVisibleDrop] = useState(null);
 
@@ -69,7 +70,7 @@ const Categories = ({
       {showAddCategory && (
         <div className="add-category">
           <form onSubmit={(e) => addCategory(e)}>
-            <input type="text" name="category" />
+            <input autoFocus ref={addCategoryRef} type="text" name="category" />
           </form>
         </div>
       )}
