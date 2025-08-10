@@ -1013,6 +1013,10 @@ input::-webkit-credentials-auto-fill-button {
   cursor: pointer;
 }
 
+.magnify-category {
+  transform: scale(1.2);
+}
+
 /* Categories Styling Ends */
 
 /* Drop area styling starts */
