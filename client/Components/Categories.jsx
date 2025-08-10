@@ -14,23 +14,33 @@ const Categories = ({
   draggedTodo,
   changeTodoCategory
 }) => {
-  const [visibleDrop, setVisibleDrop] = useState(null);
+  // const [visibleDrop, setVisibleDrop] = useState(null);
 
   return (
     <div className="Categories-Container">
       {categories.map((individualCategory) => {
         return (
-          <React.Fragment key={individualCategory._id}>
             <div
-              onDragEnter={() => {
-                setVisibleDrop(individualCategory._id);
+              onDragEnter={(e) => {
+                // setVisibleDrop(individualCategory._id);
+                e.currentTarget.classList.toggle('magnify-category',true);
+                // Element.classlist.toggle('magnify-category');
                 // console.log(
                 //   `The todo with id : ${draggedTodo} is being tranferred to the category with id : ${individualCategory._id}`
                 // );
               }}
-              onDragLeave={() => {
-                setVisibleDrop(null);
+              onDragLeave = {(e) => {
+                e.currentTarget.classList.toggle('magnify-category',false);
+              }}
+              onDragOver = {(e) => {
+                e.preventDefault();
+              }}
+              onDrop={(e) => {
+                // setVisibleDrop(null);
+                e.preventDefault();
+                e.currentTarget.classList.toggle('magnify-category',false);
                 changeTodoCategory(draggedTodo,individualCategory._id);
+                // Element.classlist.toggle('magnify-category');
             }
             }
               className={
@@ -45,8 +55,7 @@ const Categories = ({
                 <HiXMark></HiXMark>
               </span>
             </div>
-            <DropArea show={visibleDrop === individualCategory._id}></DropArea>
-          </React.Fragment>
+          
         );
       })}
       {!showAddCategory && (
